@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    body{
+        background:darkturquoise;
+    }
+    #main{
+        width:300px;
+        border:1px solid green;
+        margin:0 auto;
+    }
+    #button{
+        width:100%;
+        height:50px;
+        background:lightblue;
+        text-align: center;
+    }
+    #imgbox{
+        display:block;
+    }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <button id="button">隐藏</button>
+        
+        <img id="imgbox" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577444372587&di=1684c649c2b1d4b1fdcd5910968c508b&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fpcdlc%2F1709%2F16%2Fc79%2F59427944_1505500668556.gif" alt="">
+        
+    </div>
+</body>
+</html>
+<script>
+/* 
+  默认：图片是显示的，按钮的内容 隐藏
+  点击按钮的时候，如果按钮原来是隐藏，
+    + 按钮内容变成“显示”
+    + 图片消失
+
+  点击按钮的时候，如果按钮是显示，
+    + 按钮内容变成“隐藏”
+    + 图片显示
+*/
+var button=document.getElementById("button");
+var oimg=document.getElementById("imgbox");
+button.onclick=function(){
+     var value=button.innerText;
+     if(value=="隐藏"){
+        button.innerHTML="显示";
+        oimg.style.display="none";
+     }else{
+        button.innerHTML="隐藏";
+        oimg.style.display="block";
+     }
+}
+</script>

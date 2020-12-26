@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .code {
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid red;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="code" id="code"></div>
+    <button id="btn">获取验证码</button>
+</body>
+
+</html>
+<script>
+    /* 
+    验证码组成：大小写字母和0-9 之间的数字
+    位数：4位
+    */
+    // 索引0-61
+    function getCode() {
+        var str = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+        var resStr = "";
+        while(resStr.length<4){
+            var index = Math.round(Math.random() * 61);
+            // 每次判断一下，如果resStr中没有此次的这个字符，说明不重复
+            if(resStr.indexOf([index])==-1){
+                resStr+=str[index];
+            }
+        }
+        return resStr;
+    }
+    
+    code.innerText=getCode();
+    btn.onclick=function(){
+        code.innerText=getCode();
+    }
+
+</script>

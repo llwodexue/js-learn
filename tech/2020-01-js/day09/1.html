@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+          *{
+              margin:0;
+              padding:0;
+          }
+          body{
+              background:darkslateblue;
+          }
+          #time{
+             height:100px;
+             line-height: 100px;
+             border:1px dashed yellow;
+             text-align: center;
+             color:#fff;
+             font-size:26px;
+          }
+    </style>
+</head>
+<body>
+    <div id="time">
+      
+    </div>
+</body>
+</html>
+<script>
+
+/* 
+  倒计时：
+  目标时间：2020年2月6号
+  目标时间-现在的时候=还剩多少时间？
+  为了方便计算时间差，我们统一转成到1970年...的时间戳
+
+*/
+function countDown(targetStr){
+     // 目标时间
+     var targetTime=new Date(targetStr);
+     // 现在的时间
+     var nowTime=new Date()
+     // 时间差,得出来的是毫秒
+     var diffTime=targetTime-nowTime;
+     // 把时间差换算成时、分、秒
+     var hours=Math.floor(diffTime/(1000*60*60));
+     var minutes=Math.floor((diffTime-hours*1000*60*60)/(1000*60));
+     var seconds=Math.floor((diffTime-hours*1000*60*60-minutes*60*1000)/1000);
+
+     var result=formatter(hours)+"时"+formatter(minutes)+"分"+formatter(seconds)+"秒";
+     return result;
+
+}
+function formatter(val){
+   return val= Number(val)<10?"0"+val:val;
+}
+var res=countDown("2020-11-23 2:00:00");
+time.innerHTML=res;
+
+setInterval(() => {
+    var res=countDown("2020-11-23 2:00:00");
+time.innerHTML=res;
+}, 1000);
+    
+</script>

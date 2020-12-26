@@ -1,0 +1,46 @@
+*{
+    margin:0;
+    padding:0;
+}
+ul,ol{
+    list-style: none;
+}
+.clearfix::after{
+    content:"";
+    height:0;
+    font-size:0;
+    clear: both;
+    visibility: hidden;
+    display:block;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background:lavender;
+}
+#main{
+    width: 1200px;
+    margin:0 auto;
+}
+#topBar{
+  height: 50px;
+  background:#fff;
+  font-size:18px;
+  display: flex;
+  align-items: center;
+  padding-left:20px;
+  box-sizing: border-box;
+}
+#topBar .btn{
+    margin-right: 10px;
+    display:flex;
+    align-items: center;
+}
+#topBar .btn .key{
+    color:blue;
+}
+#topBar .arrows{
+    font-size:12px;
+    margin-left:10px;
+}

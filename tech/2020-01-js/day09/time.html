@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background:darkturquoise;
+        }
+        #clock{
+            height: 100px;
+            line-height: 100px;
+            width: 500px;
+            border:2px dashed darkorange;
+            margin:0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+</body>
+</html>
+<script>
+    function zero(num){
+       return num<10?"0"+num:num;
+    }
+    function clockFn(){
+            var time=new Date();
+            var year=time.getFullYear();
+            var month=time.getMonth()+1;
+            var date=time.getDate();
+            var day=time.getDay();//[0-6]周日-周六
+            var hours=time.getHours();
+            var minutes=time.getMinutes();
+            var seconds=time.getSeconds();
+            var weekStr=["周日","周一","周二","周三","周四","周五","周六"];
+
+            return year+"年"+zero(month)+"月"+zero(date)+"日"+" "+weekStr[day]+" "+zero(hours)+":"+zero(minutes)+":"+zero(seconds);
+    }
+
+    var clock=document.getElementById("clock");
+    clock.innerText=clockFn();
+    setInterval(function(){
+        clock.innerText=clockFn();
+    },1000)
+</script>

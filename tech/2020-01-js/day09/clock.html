@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #clock {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock"></div>
+</body>
+
+</html>
+<script>
+    var oclock=document.getElementById("clock");
+    function clock() {
+        var time = new Date();
+        var year = time.getFullYear();
+        var month = time.getMonth() + 1;
+        var date = time.getDate();
+        var day = time.getDay();
+        var weekStr = ["周日","周一", "周二", "周三", "周四", "周五","周六"];
+        var hour = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+
+        var res = year + "年" + month + "月" + date + weekStr[day] + " " + hour + "时" + minutes + "分" + seconds + "秒";
+        oclock.innerText = res;
+
+    }
+    clock();
+    setInterval(function(){
+        clock();
+    },1000)
+   
+
+
+</script>

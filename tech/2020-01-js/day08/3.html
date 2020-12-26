@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="oh">h1</h1>
+    <p>p1</p>
+    <div id="main">
+        <p>p2</p>
+        <p>p3</p>
+        <span class="box" >span1</span>
+        <span class="box">span2</span>
+        <!-- 注释 -->
+    </div>
+    <p>p3</p>
+    <span class="box">span3</span>
+    <input type="text" name="userName">
+</body>
+</html>
+<script>
+    // id 的上下文只能是document
+  var oh=document.getElementById("oh");
+    // 通过name名字获取一组元素，它的上下文只能是document
+  var names=document.getElementsByName("userName");
+  // 通过标签名
+  var ps=main.getElementsByTagName("p");
+  // 通过类名获取一组元素
+  var obox=main.getElementsByClassName("box");
+  // 通过选择器选择你想要的元素（单个的）
+  var ele=main.querySelector("p");
+  // 多个的，返回值是类数组
+  var eles=document.querySelectorAll("#main>p");
+
+  document.head;//head
+document.body;//  body
+document.documentElement;// html
+
+// 获取一屏幕的宽和高
+var sW=document.documentElement.clientWidth||document.body.clientWidth;
+
+var sH=document.documentElement.clientHeight||document.body.clientHeight;
+
+</script>

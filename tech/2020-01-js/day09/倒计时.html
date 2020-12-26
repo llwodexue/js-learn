@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background:darkturquoise;
+        }
+        #clock{
+            height: 100px;
+            text-align: center;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+</body>
+</html>
+<script>
+    /* 
+      获取现在的时间：
+      目标时间：new Date("2020-11-20 21:00:00")
+    
+    
+    */
+    var target="2020-11-20 20:30:00";
+     function cutDown(target){
+        var nowTime=new Date();
+        var diffTime=new Date(target)-nowTime;
+        var hours=Math.floor(diffTime/(1000*60*60));
+        var minutes=Math.floor((diffTime-hours*60*60*1000)/(1000*60));
+        var seconds=Math.floor((diffTime-hours*60*60*1000-minutes*60*1000)/1000);
+        return hours+":"+minutes+":"+seconds;
+       
+     }
+     clock.innerHTML=cutDown(target);
+     setInterval(function(){
+        clock.innerHTML=cutDown(target);
+     },1000)
+    
+</script>

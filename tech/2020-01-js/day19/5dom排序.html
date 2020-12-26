@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        #main{
+            width: 500px;
+            margin:0 auto;
+        }
+        #main>li{
+            height: 35px;
+            line-height: 35px;
+            border-bottom: 1px dashed darkorange;
+        }
+        #button{
+            width: 100px;
+            height: 30px;
+            display:block;
+            margin:30px auto;
+        }
+    </style>
+</head>
+<body>
+    <ul class="main" id="main">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <button id="button">倒序</button>
+</body>
+</html>
+<script>
+var main=document.getElementById("main");
+var lists=main.getElementsByTagName("li");
+var flag=-1;
+lists=Array.prototype.slice.call(lists);
+
+// dom映射:js操作的元素和页面中的元素存在映射关系
+// dom的回流：当页面中元素的位置，大小或结构、定位发生改变，会引发浏览器对当前页面的结构进行重新的计算；非常耗性能的；
+// dom的重绘：当元素的背景、透明度、颜色发生变化，那么浏览器会对元素进行重新描绘；这个过程就是浏览器的重绘；
+
+button.onclick=function(){
+    lists=lists.sort(function(a,b){
+      return (a.innerHTML-b.innerHTML)*flag;
+    });
+    flag*=-1;
+    for(var i=0;i<lists.length;i++){
+        main.appendChild(lists[i]);
+    }
+    
+}
+
+</script>

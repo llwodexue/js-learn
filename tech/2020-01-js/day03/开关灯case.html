@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      *{
+          margin:0;
+          padding:0;
+      }
+      body{
+          background:darkturquoise;
+      }
+      .main{
+          width: 300px;
+          margin:0 auto;
+          border:1px solid #333;
+      }
+      button{
+          display:block;
+          width:100%;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+        <button id="btn">隐藏</button>
+        <img id="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577444372587&di=1684c649c2b1d4b1fdcd5910968c508b&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fpcdlc%2F1709%2F16%2Fc79%2F59427944_1505500668556.gif" alt="">
+    </div>
+</body>
+</html>
+<script>
+/* 
+要做的事情：点击按钮
+如果按钮里面的文字：隐藏：
+   1、更改按钮里面的文字内容：显示
+   2、更改图片样式：隐藏
+如果按钮里面的文字：显示   
+  1、更改按钮里面的文字内容：隐藏
+  2、更改图片样式：显示
+*/ 
+//1、先获取操作的元素
+var btn=document.getElementById("btn");
+var img=document.getElementById("img");
+// 2给按钮绑定点击事件
+btn.onclick=function(){
+    // 点击按钮的时候，要做的一些事情
+    // value 按钮里面的文字内容
+    var value=btn.innerText;
+    if(value=="隐藏"){
+        btn.innerText="显示";
+        img.style.display="none";
+    }else{
+        btn.innerText="隐藏";
+        img.style.display="block";
+    }
+}
+
+</script>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    ul,ol{
+        list-style: none;
+    }
+    .main{
+        width:500px;
+        margin:0 auto;
+    }
+    ul>li{
+        width:100px;
+        height:40px;
+        line-height: 40px;
+        text-align:center;
+        border:1px solid #333;
+        margin-right:10px;
+        display:inline-block;
+        position:relative;
+        top:1px;
+    }
+    .main>div{
+        height:300px;
+        line-height: 300px;
+        border:1px solid #333;
+        text-align:center;
+        display:none;
+    }
+    .main li.current{
+        background:darkcyan;
+        border-bottom-color:darkcyan;
+
+    }
+    .main div.current{
+        background:darkcyan;
+        display:block;
+    }
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+        <ul>
+            <li class="current">音乐</li>
+            <li>电视</li>
+            <li>综艺</li>
+        </ul>
+        <div class="current">音乐内容</div>
+        <div>电视内容</div>
+        <div>综艺内容</div>
+    </div>
+</body>
+</html>
+<script>
+  var main=document.getElementById("main");
+  console.log(main);
+  var lis=main.getElementsByTagName("li");
+  var divs=main.getElementsByTagName("div");
+
+  for(var i=0;i<lis.length;i++){
+       lis[i].index=i;
+       lis[i].onclick=function(){
+           for(var i=0;i<lis.length;i++){
+                 lis[i].className="";
+                 divs[i].className="";
+           }
+           var index=this.index;
+           lis[index].className="current";
+           divs[index].className="current";
+       }
+  }
+
+</script>

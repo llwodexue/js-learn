@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <p>p1</p>
+        <p id="p2">p2</p>
+        <p>p3</p>
+        <span>span</span>
+    </div>
+</body>
+</html>
+<script>
+    /* 
+    需求：获取某个元素的所有“子元素”
+    */
+
+    function myChildren(context){
+        // 先获取所有的子节点
+        var allNodes=context.childNodes;
+        var ary=[];
+        for(var i=0;i<allNodes.length;i++){
+            // 说明就是元素
+           if(allNodes[i].nodeType==1){
+            ary.push(allNodes[i]);
+           } 
+        }
+        return ary;
+    }
+
+    var main=document.getElementById("main");
+    var p2=document.getElementById("p2");
+    var res=myChildren(main);
+
+
+    
+ 
+    
+</script>

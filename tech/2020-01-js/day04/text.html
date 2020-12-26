@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        .main{
+            width: 500px;
+            margin:0 auto;
+        }
+        .main ul>li{
+           display:inline-block;
+           width: 100px;
+           height: 40px;
+           line-height: 40px;
+           text-align: center;
+           border:1px solid #333;
+           margin-right:10px;
+           position:relative;
+           top:1px;
+        }
+        .main>ul>li.current{
+            background:darkturquoise;
+            border-bottom:1px solid darkturquoise;
+        }
+        .main>div{
+            height: 300px;
+            line-height: 300px;
+            display:none;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .main div.current{
+            background:darkturquoise;
+            display:block;
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="main" id="main">
+       <ul>
+           <li class="current">音乐</li>
+           <li>综艺</li>
+           <li>电影</li>
+       </ul>
+       <div class="current">音乐</div>
+       <div >综艺</div>
+       <div >电影</div>
+   </div>
+</body>
+</html>
+<script>
+        var omain=document.getElementById("main");
+        var lis=omain.getElementsByTagName("li");
+        var divs=omain.getElementsByTagName("div");
+        for(var i=0;i<lis.length;i++){
+            lis[i].onclick=(function(i){
+                return function(){
+                    for(var a=0;a<lis.length;a++){
+                    lis[a].className="";
+                    divs[a].className="";
+                    }
+                   lis[i].className="current";
+                   divs[i].className="current";
+                }
+                
+            })(i);
+        }
+</script>

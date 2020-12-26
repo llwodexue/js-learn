@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .main {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        li {
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #333;
+            display: inline-block;
+            position: relative;
+            top: 1px;
+        }
+
+        .main li.current {
+            background: darkturquoise;
+            border-bottom-color: darkturquoise;
+        }
+
+        .main div.current {
+            background: darkturquoise;
+            display: block;
+        }
+
+        .main>div {
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            border: 1px solid #333;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main" id="main">
+        <ul>
+            <li>电视剧1</li>
+            <li class="current">电视剧2</li>
+            <li>电视剧3</li>
+        </ul>
+        <div>电视剧1</div>
+        <div class="current">电视剧2</div>
+        <div>电视剧3</div>
+    </div>
+</body>
+
+</html>
+<script>
+    // var main=document.getElementById("main");
+    var lis = document.querySelectorAll("#main li");
+    var divs = document.querySelectorAll("#main>div");
+
+    // for(var i=0;i<lis.length;i++){
+    //    (function(i){
+    //      // i=0  
+    //     lis[i].onclick=function(){
+    //        for(var j=0;j<lis.length;j++){
+    //            lis[j].className="";
+    //            divs[j].className="";
+    //        }
+    //        lis[i].className="current";
+    //        divs[i].className="current";
+    //    }
+
+    //    })(i); 
+
+
+    // }
+
+
+
+
+    // for (var i = 0; i < lis.length; i++) {
+    //     lis[i].onclick = (function (i) {
+    //         return function () {
+    //             for (var j = 0; j < lis.length; j++) {
+    //                 lis[j].className = "";
+    //                 divs[j].className = "";
+    //             }
+    //             lis[i].className = "current";
+    //             divs[i].className = "current";
+    //         }
+    //     })(i);
+    // }
+
+
+    
+    for (let i = 0; i < lis.length; i++) {
+        lis[i].onclick = function () {
+                for (var j = 0; j < lis.length; j++) {
+                    lis[j].className = "";
+                    divs[j].className = "";
+                }
+                lis[i].className = "current";
+                divs[i].className = "current";
+            }
+       
+    }
+
+
+</script>

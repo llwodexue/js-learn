@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            color:red;
+            height: 100px;
+            border:1px solid green;
+            margin-bottom:50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="box" style="color:red;">该起床了！box</div> 
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+   
+</body>
+</html>
+<script>
+    // 通过标签名字获取一组元素，得到的是一个类数组，标签集合
+   var lis=document.getElementsByTagName("li");
+
+//     // 通过id拿到这个元素
+//    var obox=document.getElementById("box");
+//    // 绑定点击事件
+//    obox.onclick=function(){
+//        // 点击的时候要做的事情
+//        // obox.style.color="blue";
+//        // this 指的就是你当前绑定的元素
+//        this.style.color="blue";
+//    }
+//    // 鼠标滑上事件
+//    obox.onmouseover=function(){
+//       console.log("划上")
+//    }
+//    //鼠标离开事件
+//    obox.onmouseout=function(){
+//        console.log("离开")
+//    }
+
+</script>

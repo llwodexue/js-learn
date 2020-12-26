@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <p id="p1">p1</p>
+        <p id="p2">p2</p>
+        <p>p3</p>
+        <span>span</span>
+    </div>
+</body>
+</html>
+<script>
+    /* 
+    需求：perviousElementSibling
+    */
+    var main=document.getElementById("main");
+    var p2=document.getElementById("p2");
+    function mypreSibling(ele){
+        var pre=ele.previousSibling;
+        // pre 存在并且不是标签元素
+        while(pre&&pre.nodeType!==1){
+            pre=pre.previousSibling;
+        }
+        return pre;
+    }
+    var res=mypreSibling(p2);
+    var res2=mypreSibling(p1);
+
+    
+ 
+    
+</script>

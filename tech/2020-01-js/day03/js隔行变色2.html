@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background:darkturquoise;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        .main{
+            width: 500px;
+            margin:0 auto;
+            color:#666;
+        }
+        .main li{
+            height: 40px;
+            line-height: 40px;
+            text-indent: 20px;
+        }
+        
+        /* .main li:nth-child(2n+1){
+           background:lightgreen;
+        }
+        .main li:nth-child(2n){
+            background:yellow;
+        } */
+    </style>
+</head>
+<body>
+    <ul class="main" id="main">
+        <li>走在前沿的专家级课程：珠峰微信小程序实战开发课程</li>
+        <li>走在前沿的专家级课程：珠峰微信小程序实战开发课程</li>
+        <li>走在前沿的专家级课程：珠峰微信小程序实战开发课程</li>
+        <li>走在前沿的专家级课程：珠峰微信小程序实战开发课程</li>
+        <li>走在前沿的专家级课程：珠峰微信小程序实战开发课程</li>
+        <li>走在前沿的专家级课程：珠峰微信小程序实战开发课程</li>
+    </ul>
+</body>
+</html>
+<script>
+    var omain=document.getElementById("main");
+    var lis=omain.getElementsByTagName("li");
+    for(var i=0;i<lis.length;i++){
+       
+        if(i%2==0){
+            lis[i].style.backgroundColor="lightgreen";
+          
+        }else{
+            lis[i].style.backgroundColor="yellow";
+        }
+        // 给每个li绑定鼠标滑过事件
+        lis[i].onmouseover=function(){
+            // 把原来的颜色存到这个元素身上
+            this.oldColor=this.style.backgroundColor;
+            // 改背景颜色
+            this.style.backgroundColor="lightblue";
+        }
+        // 鼠标离开的时候，还原原来li的背景色
+        lis[i].onmouseout=function(){
+            //console.log(this.oldColor);
+           this.style.backgroundColor=this.oldColor;
+        }
+    }
+    
+
+</script>

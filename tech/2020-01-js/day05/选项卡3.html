@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .main {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        .main li {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid #333;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+
+        .main>div {
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            border: 1px solid #333;
+            display: none;
+        }
+
+        .main li.current {
+            background: darkcyan;
+            border-bottom-color: darkcyan;
+        }
+
+        .main>div.current {
+            display: block;
+            background: darkcyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main" id="main">
+        <ul>
+            <li class="current">音乐</li>
+            <li >电视</li>
+            <li>综艺</li>
+        </ul>
+        <div>音乐</div>
+        <div class="current">电视</div>
+        <div>综艺</div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    /* 
+      思路：点击哪个li就给哪个li添加类名current，并且给相应的div添加current
+    
+    */
+
+    var omain = document.getElementById("main");
+    var olis = omain.getElementsByTagName("li");
+    var odivs = omain.getElementsByTagName("div");
+    console.dir(olis);
+    for (var i = 0; i < olis.length; i++) {
+        olis[i].index=i;
+        olis[i].onclick = function () {
+            for (var i = 0; i < olis.length; i++) {
+                olis[i].className = "";
+                odivs[i].className = "";
+            }
+            this.className = "current";
+            odivs[this.index].className = "current";
+        }
+    }
+
+
+   
+</script>
