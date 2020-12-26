@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body,
+html {
+    background: lavender;
+}
+
+.main {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.main .topBar {
+    width: 1185px;
+    height: 50px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.main .shortBtn {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    color: blue;
+}
+
+.main .shortBtn .arrows {
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.main .shortBtn .iconfont {
+    font-size: 14px;
+}
+
+.shortBtn:hover > span {
+    color: red;
+}
+
+.lists {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lists li {
+    margin-top: 20px;
+    width: 225px;
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+.lists li img {
+    width: 140px;
+    display: block;
+    margin: 0 auto;
+}
+
+.lists li p {
+    line-height: 30px;
+}
+
+.lists li .numInfo {
+    display: flex;
+    justify-content: space-between;
+}
+.arrowUp.current {
+    color: red;
+}
+.arrowDown.current {
+    color: red;
+}

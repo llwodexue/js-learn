@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            ul,
+            ol {
+                list-style: none;
+            }
+
+            .main {
+                width: 500px;
+                margin: 0 auto;
+            }
+
+            ul > li {
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                border: 1px solid #333;
+                margin-right: 10px;
+                display: inline-block;
+                position: relative;
+                top: 1px;
+            }
+
+            .main > div {
+                height: 300px;
+                line-height: 300px;
+                border: 1px solid #333;
+                text-align: center;
+                display: none;
+            }
+
+            .main li.current {
+                background: darkcyan;
+                border-bottom-color: darkcyan;
+            }
+
+            .main div.current {
+                background: darkcyan;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- div.main>(ul>li{电视剧$}*3)+div{电视剧$}*3 -->
+        <div class="main">
+            <ul>
+                <li class="current">电视剧1</li>
+                <li>电视剧2</li>
+                <li>电视剧3</li>
+            </ul>
+            <div class="current">电视剧1</div>
+            <div>电视剧2</div>
+            <div>电视剧3</div>
+        </div>
+    </body>
+</html>
+<script>
+var lis = document.querySelectorAll("li");
+for (var i = 0; i < lis.length; i++) {
+    lis[i].onclick = (function (x) {
+        return function () {
+            console.log(x);
+        };
+    })(i);
+}
+</script>

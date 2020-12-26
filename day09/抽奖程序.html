@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #main {
+                width: 300px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 28px;
+                text-align: center;
+                background: #333;
+                color: #fff;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main"></div>
+    </body>
+</html>
+<script>
+var main = document.getElementById("main");
+function lucky() {
+    var res = "";
+    var str = "0123456789";
+    for (var i = 0; i < 4; i++) {
+        // res += Math.floor(Math.random() * 10).toString();
+        var index = Math.round(Math.random() * (str.length - 1));
+        res += str[index];
+    }
+    return res;
+}
+main.innerText = lucky();
+var time1 = setInterval(function () {
+    main.innerText = lucky();
+}, 100);
+var time2 = setTimeout(function () {
+    main.style.color = "red";
+    clearInterval(time1);
+    time1 = null;
+    clearTimeout(time2);
+    time2 = null;
+}, 10000);
+</script>

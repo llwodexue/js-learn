@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="main">
+            <p>hello world</p>
+            <span name="username">span1</span>
+            <span class="box">span2</span>
+        </div>
+        <span class="box">span3</span>
+        <input type="text" name="username" />
+        <ul class="list">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <a href="http://www.baidu.com" id="a1">百度</a>
+<div id="para">
+    <!-- 注释节点 -->
+    hello world
+</div>
+    </body>
+</html>
+<script>
+    var main = document.getElementById("main");
+    var names = document.getElementsByName("username");
+    var spans = document.getElementsByTagName("span");
+    var box = main.getElementsByClassName("box");
+    var p = document.querySelector("#main>p");
+    var lis = document.querySelectorAll("li");
+    var html = document.documentElement;
+    var vH = document.documentElement.clientHeight || document.body.clientHeight;
+    var vW = document.documentElement.clientWidth || document.body.clientWidth;
+    var a1 = document.getElementById("a1");
+    var para = document.getElementById("para");
+    var res = para.childNodes
+    console.log(main);
+    console.log(spans);
+    console.log(box);
+    console.log(names);
+    console.log(p);
+    console.log(lis);
+    console.log(html);
+    console.log(vH);
+    console.log(vW);
+    console.log(res);
+</script>

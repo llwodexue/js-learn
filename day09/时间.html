@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #clock {
+                width: 400px;
+                height: 100px;
+                margin: 0 auto;
+                line-height: 100px;
+                text-align: center;
+                /* color: #fff; */
+                /* background: #333; */
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="clock"></div>
+    </body>
+</html>
+<script>
+var div = document.getElementById("clock");
+function createTime() {
+    var time = new Date();
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var date = time.getDate();
+    var day = time.getDay();
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+    var second = time.getSeconds();
+    var dayList = ["日", "一", "二", "三", "四", "五", "六"];
+    var res = `${year}年${zero(month)}月${zero(date)}日 星期${dayList[day]} ${zero(hour)}:${zero(minute)}:${zero(second)}`;
+    return res;
+}
+function zero(num) {
+    return num >= 10 ? num : "0" + num;
+}
+function color(obj) {
+    if (obj) {
+        var r = Math.floor(Math.random()*80)
+        var g = Math.floor(Math.random()*80)
+        var b = Math.floor(Math.random()*80)
+    }else{
+        var r = Math.floor(Math.random()*155 + 100)
+        var g = Math.floor(Math.random()*155 + 100)
+        var b = Math.floor(Math.random()*155 + 100)
+    }
+    var color = `rgba(${r},${g},${b})`
+    return color;
+}
+div.innerText = createTime();
+div.style.color = color(false);
+div.style.background = color(true);
+setInterval(function () {
+    div.style.color = color(false);
+    div.style.background = color(true);
+    div.innerText = createTime();
+}, 1000);
+</script>

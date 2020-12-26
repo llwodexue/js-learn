@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background: darkturquoise;
+    }
+    ul {
+        list-style: none;
+    }
+    #main {
+        width: 500px;
+        margin: auto;
+    }
+    #main li {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    .color1 {
+        background: lightblue;
+    }
+    .color2 {
+        background: lightgreen;
+    }
+</style>
+    </head>
+    <body>
+        <ul id="main">
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+        </ul>
+    </body>
+</html>
+<script>
+    var main = document.getElementById("main");
+    var lst = main.getElementsByTagName("li");
+    for (var i = 0; i < lst.length; i++) {
+        var el = lst[i];
+        if (i % 2 == 0) {
+            el.className += "color1";
+        } else {
+            el.className += "color2";
+        }
+        var oldColor = el.style.background;
+        el.onmouseover = function () {
+            this.style.background = "green";
+        };
+        el.onmouseout = function () {
+            this.style.background = oldColor;
+        };
+    }
+</script>

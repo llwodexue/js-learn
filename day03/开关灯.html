@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: linear-gradient(90deg,darkturquoise,darkcyan);
+            }
+            .main {
+                width: 500px;
+                margin: 0 auto;
+                border: 1px solid #333;
+            }
+            button{
+                display: block;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                font-size: 24px;
+            }
+            img{
+                width: 100%;
+                display: block;
+                transition: all 1s linear;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main" id="main">
+            <button id="btn">隐藏</button>
+            <img id="img" src="https://tva3.sinaimg.cn/bmiddle/6aaeb4b8gw1e83ef83h4dg20c8087wst.gif" alt="">
+        </div>
+    </body>
+</html>
+<script>
+    var box = document.getElementById("btn");
+    var img = document.getElementById("img");
+    btn.onclick = function(){
+        var val = btn.innerText;
+        if (val == "隐藏"){
+            // img.style.display = "none";
+            img.style.visibility = "hidden";
+            btn.innerText = "显示";
+            // setTimeout(()=>img.style.height = "0",100)
+        }else {
+            // img.style.display = "block";
+            img.style.visibility = "visible";
+            btn.innerText = "隐藏";
+            // setTimeout(()=>img.style.height = "100%",100)
+        }
+    }
+
+</script>

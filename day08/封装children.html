@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>dom操作</title>
+    </head>
+    <body>
+        <div id="main">
+            <p>p1</p>
+            <p>p2</p>
+            <p>p3</p>
+        </div>
+    </body>
+</html>
+<script>
+    var main = document.getElementById("main");
+    var p = document.querySelectorAll("#main>p");
+    var p0 = p[0];
+    var p2 = p[2];
+    function children(el) {
+        var res = el.childNodes;
+        var arr = [];
+        for (var i = 0; i < el.childNodes.length; i++) {
+            if (res[i].nodeType == 1) {
+                arr.push(res[i]);
+            }
+        }
+        return arr;
+    }
+    console.log(children(main));
+
+function PreviousElement(index) {
+    if (index.previousSibling.nodeType == 1) {
+        return index.previousSibling;
+    } else {
+        return PreviousElement(index.previousSibling);
+    }
+}
+console.log(PreviousElement(p2));
+
+    function PreviousElement(el) {
+        var elp = el.previousSibling;
+        while (elp && elp.nodeType != 1) {
+            elp = elp.previousSibling;
+        }
+        return elp;
+    }
+
+    function PreviousElement(el) {
+        if (!el) {
+            return null;
+        }
+        while (true) {
+            el = el.previousSibling;
+            if (el.nodeType == 1) {
+                return el;
+            }
+            if (el == null) {
+                break;
+            }
+        }
+    }
+
+    console.log(PreviousElement(p2));
+</script>

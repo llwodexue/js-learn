@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #main {
+            width: 500px;
+            margin: auto;
+        }
+        .lists>li {
+            display: inline-block;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            width: 100px;
+            margin-right: 10px;
+            border: 1px solid;
+            position: relative;
+            top: 1px;
+        }
+        #main>div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            line-height: 300px;
+            text-align: center;
+        }
+        #main div.now {
+            display: block;
+            background: darkcyan;
+        }
+        #main li.now {
+            background: darkcyan;
+            border-bottom: 1px darkcyan;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <ul class="lists">
+        <li class="now">音乐</li>
+        <li>电视</li>
+        <li>综艺</li>
+    </ul>
+    <div class="now">音乐</div>
+    <div>电视</div>
+    <div>综艺</div>
+</div>
+</body>
+</html>
+<script>
+    var main = document.getElementById("main");
+    var lis = main.getElementsByTagName("li");
+    var divs = main.getElementsByTagName("div");
+    for (var i = 0; i < lis.length; i++) {
+        var el = lis[i];
+        el.index = i;
+        el.onclick = function(){
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].className = "";
+                divs[i].className = "";
+            }
+            lis[this.index].className = "now";
+            divs[this.index].className = "now";
+        }
+    }
+</script>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        #main {
+            width: 479px;
+            height: 591px;
+            background: url("img/bg1.png");
+            margin: 0 auto;
+            color: #fff;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .uls li {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .uls button {
+            width: 52px;
+            height: 44px;
+            border: none;
+        }
+
+        .add {
+            background: url("img/add.png");
+        }
+
+        .sub {
+            background: url("img/sub.png");
+        }
+
+        .jianshu {
+            width: 44px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 5px;
+            background: #fff;
+            color: #333;
+        }
+
+        .shopInfo {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        .shopInfo p {
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul class="uls">
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="jianshu">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价：<b class="danjia">1</b>元 小计：<span class="xiaoji">0</span>元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="jianshu">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价：<b class="danjia">2</b>元 小计：<span class="xiaoji">0</span>元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="jianshu">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价：<b class="danjia">3</b>元 小计：<span class="xiaoji">0</span>元
+                </span>
+            </li>
+        </ul>
+        <div class="shopInfo">
+            <p>
+                商品共<span class="zongjian">0</span>件
+            </p>
+            <p>
+                共花了<span class="zongjia">0</span>元
+            </p>
+            <p>
+                选中的商品中最贵的单价是<span class="max">0</span>元
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+<script src="2.js"></script>

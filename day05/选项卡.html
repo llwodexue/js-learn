@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .main {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .lists>li {
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid;
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+        top: 1px;
+        cursor: pointer;
+    }
+    .main>div {
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+        border: 1px solid;
+        display: none;
+    }
+    .main>div.current {
+        display: block;
+        background: darkcyan;
+    }
+    .lists>li.current {
+        background: darkcyan;
+        border-bottom: 1px solid darkcyan;
+    }
+</style>
+</head>
+<body>
+<!-- div.main>(ul>li{音乐}*3)div{音乐}*3 -->
+<div class="main" id="main">
+    <ul class="lists">
+        <li class="current">音乐</li>
+        <li>电视</li>
+        <li>综艺</li>
+    </ul>
+    <div class="current">音乐</div>
+    <div>电视</div>
+    <div>综艺</div>
+</div>
+</body>
+</html>
+<!-- <script src="checkbox.js"></script> -->
+<!-- <script>
+var main = document.getElementById("main");
+var lis = main.getElementsByTagName("li");
+var divs = main.getElementsByTagName("div");
+for (var i = 0; i < lis.length; i++) {
+    lis[i].onclick = function(){
+        lis[i].index = i;
+        console.dir(lis[i])
+        lis[i].onclick = function(){
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].className = "";
+                divs[i].className = "";
+            }
+            this.className = "current";
+            divs[this.index].className = "current";
+        }
+    }
+}
+// console.dir(lis);
+// console.dir(divs);
+</script> -->
+<script src="2.js"></script>

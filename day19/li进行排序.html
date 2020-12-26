@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            ul {
+                list-style: none;
+                width: 500px;
+                margin: 0 auto;
+            }
+            li {
+                line-height: 30px;
+                height: 30px;
+                border-bottom: 1px dashed orange;
+            }
+            button {
+                display: block;
+                margin: 30px auto;
+                font-size: 20px;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li flag="1">1</li>
+            <li>3</li>
+            <li>5</li>
+            <li>2</li>
+            <li>4</li>
+        </ul>
+        <button>倒序</button>
+    </body>
+</html>
+<script>
+    var lis = document.querySelectorAll("li");
+    var btn = document.querySelector("button");
+    var ul = document.querySelector("ul");
+    var lisArr = [].slice.call(lis);
+    var flag = -1;
+    btn.onclick = function () {
+        // var oArr = lisArr.sort(function (a, b) {
+        //     return (b.innerText - a.innerText) * flag;
+        // });
+        // flag *= -1;
+        // for (let i = 0; i < lis.length; i++) {
+        //     ul.appendChild(oArr[i]);
+        // }
+
+        var oArr = lisArr.sort(function (a, b) {
+            return (b.innerText - a.innerText) * flag;
+        });
+        flag *= -1;
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].innerText = oArr[i].innerText;
+        }
+    };
+</script>

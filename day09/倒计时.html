@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #clock {
+                width: 400px;
+                height: 100px;
+                margin: 0 auto;
+                line-height: 100px;
+                text-align: center;
+                color: #fff;
+                background: #333;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="clock">05小时30分22秒</div>
+    </body>
+</html>
+<script>
+var clock = document.getElementById("clock");
+function getTime() {
+    var now = new Date().getTime();
+    var targetTime = new Date("2020-11-20 14:23:00").getTime();
+    var time = (targetTime - now) / 1000;
+    if (time < 1) {
+        clearInterval(timeClock);
+        timeClock = null;
+        return "time over";
+    }
+    var resHour = Math.floor(time / 60 / 60);
+    var minuteAll = time - resHour * 60 * 60;
+    var resMinute = Math.floor(minuteAll / 60);
+    var secondAll = minuteAll - resMinute * 60;
+    var resSecond = Math.floor(secondAll);
+    return `${zero(resHour)}时${zero(resMinute)}分${zero(resSecond)}秒`;
+}
+function zero(num) {
+    return num > 10 ? num : "0" + num;
+}
+clock.innerText = getTime();
+var timeClock = setInterval(function () {
+    clock.innerText = getTime();
+});
+</script>

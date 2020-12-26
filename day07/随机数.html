@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .main {
+                width: 200px;
+                margin: 100px auto;
+            }
+            input[type="text"] {
+                height: 30px;
+                width: 100%;
+                border: 1px solid red;
+                outline: 1px solid red;
+                box-sizing: border-box;
+                display: block;
+                font-size: 16px;
+                color: black;
+                text-indent: 30px;
+                /* padding-left: 30px; */
+            }
+            button {
+                margin-top: 30px;
+                height: 30px;
+                width: 100%;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+<input type="text" />
+<button>获取验证码</button>
+        </div>
+    </body>
+</html>
+<!-- <script>
+    var txt = document.getElementById("txt");
+    var div = document.getElementById("div");
+    var btn = document.getElementsByTagName("button")[0];
+    function getCode() {
+        var str = "0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
+        var res = "";
+        for (var i = 0; i < 8; i++) {
+            // Math.random()*61 [0-61)
+            var index = Math.round(Math.random() * (str.length - 1));
+            if (res.indexOf(str[index]) > -1) {
+                i--;
+                continue;
+            }
+            // res += str.charAt(index);
+            res += str[index];
+        }
+        return res;
+    }
+    btn.onclick = function () {
+        txt.value = getCode();
+    };
+    txt.value = getCode();
+</script> -->
+
+<script>
+    var input = document.getElementsByTagName("input")[0];
+    var btn = document.getElementsByTagName("button")[0];
+    function getCode() {
+        var str = "0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
+        var res = "";
+        while (res.length < 12) {
+            var index = Math.round(Math.random() * (str.length - 1));
+            // 生成不重复的验证码（不区分大小写）
+            if (res.indexOf(str[index]) == -1) {
+                res += str[index];
+            }
+        }
+        return res;
+    }
+    btn.onclick = function () {
+        input.value = getCode();
+    };
+    input.value = getCode();
+</script>

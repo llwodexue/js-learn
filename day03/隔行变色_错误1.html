@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background: darkturquoise;
+            }
+            ul {
+                list-style: none;
+            }
+            #main {
+                width: 500px;
+                margin: auto;
+            }
+            #main li {
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+            }
+            .color1 {
+                background: lightblue;
+            }
+            .color2 {
+                background: lightgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="main">
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+            <li>走在前方不迷路，迷路就去找麋鹿</li>
+        </ul>
+    </body>
+</html>
+<script>
+    var main = document.getElementById("main");
+    var lst = main.getElementsByTagName("li");
+for (var i = 0; i < lst.length; i++) {
+    if (i % 2 == 0) {
+        lst[i].style.background = "lightblue";
+    } else {
+        lst[i].style.background = "lightgreen";
+    }
+    let oldColor = lst[i].style.background;
+    lst[i].onmouseover = function () {
+        this.style.background = "green";
+    };
+    lst[i].onmouseout = function () {
+        this.style.background = oldColor;
+    };
+}
+        // 鼠标滑上li的时候，改变那个li的背景颜色
+        // el.onmouseover = function () {
+        //     // 把原有的颜色绑定上去
+        //     this.bgColor = this.style.backgroundColor;
+        //     this.style.background = "lightpink";
+        // };
+        // // 鼠标离开的时候，恢复原有的颜色
+        // el.onmouseout = function () {
+        //     this.style.background = this.bgColor;
+        // };
+    // }
+</script>

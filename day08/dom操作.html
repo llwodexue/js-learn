@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>dom操作</title>
+    </head>
+    <body>
+<div id="main">
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+</div>
+    </body>
+</html>
+<script>
+    var main = document.getElementById("main");
+    var p = document.querySelectorAll("#main>p");
+    console.log(main.parentNode);
+    console.log(main.childNodes);
+    console.log(main.children);
+    console.log(p[1].previousSibling);
+    console.log(p[1].previousElementSibling);
+    console.log(p[1].nextSibling);
+    console.log(p[1].nextElementSibling);
+    console.log("main.firstChild", main.firstChild);
+    console.log(main.firstElementChild);
+    console.log(main.lastChild);
+    console.log(main.lastElementChild);
+</script>

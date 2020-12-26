@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+#main {
+    width: 479px;
+    height: 591px;
+    background: url(./img/bg1.png);
+    margin: 50px auto;
+    color: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+#main li {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.shop button {
+    width: 52px;
+    height: 44px;
+    border: none;
+}
+.num {
+    width: 44px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    color: #333;
+}
+.add {
+    background: url(./img/add.png);
+}
+.sub {
+    background: url(./img/sub.png);
+}
+.shopInfo {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    line-height: 40px;
+}
