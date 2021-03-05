@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: #50C9C3;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #96DEDA, #50C9C3);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #96DEDA, #50C9C3);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: lavender;
+            border-radius: 50%;
+            left: 0;
+            position: absolute;
+        }
+
+        button {
+            position: absolute;
+            width: 100px;
+            top: 300px;
+            left: 0;
+        }
+
+        button:last-of-type {
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <button id="right">往右</button>
+    <button id="left">往左</button>
+</body>
+
+</html>
+<!-- <script src="jquery-1.11.3.js"></script> -->
+<!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.3.min.js"></script> -->
+<script>
+    let box = document.getElementById('box')
+    let right = document.getElementById('right')
+    // let maxLeft = document.documentElement.clientWidth - box.offsetWidth
+    // let time = 0
+    // let duration = 3000
+    // let timer = null
+    // let target = { // 目标位置
+    //     width: 500,
+    //     height: 600,
+    //     left: 500,
+    //     top: 500
+    // };
+    // let change = {
+    //     width: 300,
+    //     height: 400,
+    //     left: 500,
+    //     top: 500
+    // }
+    // let begin = {
+    //     width: 200,
+    //     height: 200,
+    //     left: 0,
+    //     top: 0
+    // }
+    // right.onclick = function () {
+    //     timer = setInterval(() => {
+    //         time += 17
+    //         if (time >= duration) {
+    //             clearInterval(timer)
+    //             for (let key in target) {
+    //                 box.style[key] = target[key] + "px"
+    //             }
+    //             return
+    //         }
+    //         for (let key in target) {
+    //             box.style[key] = linear(time, duration, change[key], begin[key]) + "px"
+    //         }
+    //     }, 17);
+    // }
+    /*
+    t:time 已经运动的时间
+    d:duration 总时间
+    c:change 总路程
+    b:begin 开始位置
+    返回值就是当前元素需要达到的位置
+    */
+    // function linear(t, d, c, b) {
+    //     return t / d * c + b
+    // }
+
+    // 封装一个方法可以实现元素多方向变化
+    function animate(ele, target, duration, callBack) {
+        let eTarget = {}
+        let suffix = {}
+        let cTarget = {}
+        for (const key in target) {
+            let eKey = window.getComputedStyle(ele)[key]
+            eTarget[key] = parseFloat(eKey)
+            suffix[key] = eKey.match(/[^0-9.]+/g)[0]
+            cTarget[key] = target[key] - eTarget[key]
+        }
+        let timer = null
+        let time = 0
+        return function () {
+            clearInterval(timer)
+            timer = setInterval(() => {
+                time += 20
+                if (time >= duration) {
+                    clearInterval(timer)
+                    for (let key in target) {
+                        ele.style[key] = target[key] + suffix[key]
+                    }
+                    if (typeof callBack == "function") {
+                        callBack()
+                    }
+                    return
+                }
+                for (const key in target) {
+                    ele.style[key] = time / duration * cTarget[key] + eTarget[key] + suffix[key];
+                }
+            }, 20)
+        }
+    }
+function animate(ele, target, duration, callBack) {
+    let eTarget = {}
+    let suffix = {}
+    let cTarget = {}
+    for (const key in target) {
+        let eKey = window.getComputedStyle(ele)[key]
+        eTarget[key] = parseFloat(eKey)
+        suffix[key] = eKey.match(/[^0-9.]+/g)[0]
+        cTarget[key] = target[key] - eTarget[key]
+    }
+    let time = 0
+    return function render() {
+        time += 20
+        window.cancelAnimationFrame(render)
+        if (time >= duration) {
+            for (let key in target) {
+                ele.style[key] = target[key] + suffix[key]
+            }
+            if (typeof callBack == "function") {
+                callBack()
+            }
+            return
+        }
+        for (const key in target) {
+            ele.style[key] = time / duration * cTarget[key] + eTarget[key] + suffix[key];
+        }
+        window.requestAnimationFrame(render)
+    }
+}
+
+
+    // animate(box,{target},总时间,回调函数)
+    right.onclick = animate(box, {
+        width: 600,
+        height: 700
+    }, 3000, () => {
+        console.log('执行完了');
+    })
+
+
+    // try {
+    //     console.log(a);
+    // } catch (error) {
+    //     console.log(Object.prototype.toString.call(error));
+    //     console.dir(error)
+    // }
+
+    // window.requestAnimationFrame;
+</script>

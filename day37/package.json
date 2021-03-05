@@ -1,0 +1,19 @@
+{
+  "name": "day37",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pratice1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "lessc 1.less 1.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "less": "^4.0.0"
+  }
+}

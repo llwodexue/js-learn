@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的委托</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            border: 1px solid black;
+            list-style: none;
+            width: 150px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+            position: absolute;
+            padding: 10px;
+        }
+
+        #box li {
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+
+</html>
+<script>
+    let list = document.querySelectorAll("ul li");
+    box.onclick = function(e){
+        console.log(e.target);
+    }
+
+    for (let i = 0; i < list.length; i++) {
+        list[i].onclick = function () {
+            console.log(this);
+        };
+    }
+</script>

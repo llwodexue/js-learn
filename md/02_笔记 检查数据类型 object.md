@@ -145,7 +145,7 @@ console.log(obj.b);
 
 ## 判断语句
 
-### if/else if/else
+### if/else
 
 - 只要满足其中一个条件，后面的条件就不再执行
 

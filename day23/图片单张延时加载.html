@@ -1,0 +1,86 @@
+<!--
+图片延迟加载 “图片懒加载”
+1.结构中，我们用一个盒子包裹着图片（在图片不展示的时候，可以占据着这个位置，并且设置默认的背景图或者背景颜色）
+2.最开始，IMG的SRC中不设置任何的图片地址，把图片的真实地址设置给自定义属性TRUE-IMG（最开始不展示图片:可以让图片隐藏）
+3.当浏览器窗口完全展示到图片位置的时候，我们再去加载真实图片，并且让其显示出来（第一屏幕中的图片一般都会延迟加载，来等待其它资源先加载完） -->
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>延时加载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        #box {
+            width: 300px;
+            height: 200px;
+            margin: 800px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="img/default.jpg" true-img="img/1.jpg" alt="" />
+    </div>
+</body>
+<script src="utils.js"></script>
+<script>
+    let box = document.getElementById("box");
+    let img = document.getElementsByTagName("img")[0];
+
+    function check() {
+        // 让图片只加载一次
+        if (img.flag) {
+            return;
+        }
+        // 当前图片盒子的总高度
+        let boxH = box.offsetHeight;
+        // 获取当前图片盒子距离 body 上偏移量
+        let boxT = utils.offset(box).top;
+        // 获取浏览器可视区域高度
+        let winH = utils.win("clientHeight");
+        // 获取浏览器滚动条卷曲高度
+        let winT = utils.win("scrollTop");
+        if (winH + winT >= boxH + boxT) {
+            // 创建一个 img 标签
+            let newImg = new Image();
+            // 等价于 document.createElement("img")
+            let trueImg = img.getAttribute("true-img");
+            newImg.src = trueImg;
+            // 动态创建一个 img 标签用来检测当前的路径是否正确
+            newImg.onload = function () {
+                // 如果路径正确，执行onload函数
+                img.src = trueImg;
+                img.flag = true;
+                fadeIn(img);
+            };
+            newImg.onerror = function () {
+                // 如果路径错误，执行onerror函数
+                img.src = "img/2.jpg";
+                img.flag = true;
+            };
+        }
+    }
+
+    function fadeIn() {
+        img.style.opacity = 0.05;
+        let num = Number(img.style.opacity);
+        let timer = setInterval(() => {
+            num += 0.05;
+            img.style.opacity = num;
+            if (num >= 1) {
+                clearInterval(timer);
+            }
+        }, 20);
+    }
+    window.onscroll = check;
+</script>
+</html>

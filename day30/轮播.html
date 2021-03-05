@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        #banner {
+            width: 1226px;
+            height: 460px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        #wrapper {
+            display: flex;
+            position: absolute;
+            left: 0;
+        }
+        #wrapper li {
+            width: 1226px;
+            height: 460px;
+        }
+        #wrapper li img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #list {
+            position: absolute;
+            left: 50%;
+            display: flex;
+            align-items: center;
+            transform: translate(-50%, -50%);
+            bottom: 10px;
+        }
+        #list li {
+            width: 10px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+        #list li.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        #left, #right {
+            background: url("https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png") no-repeat;
+            width: 41px;
+            height: 69px;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+        #left {
+            left: 0;
+            background-position: -84px 0;
+        }
+        #right {
+            right: 0;
+            background-position: -125px 0;
+        }
+        #left:hover {
+            background-position: 0 0;
+        }
+        #right:hover {
+            background-position: -42px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="banner">
+        <!-- 图片 -->
+        <ul id="wrapper">
+            <li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ebff5f5c1f52f2dbdd611897adbefd4.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt=""></li>
+        </ul>
+        <!-- 分页器（小圆点） -->
+        <ul id="list">
+            <li class="active"></li>
+        </ul>
+        <!-- 前进按钮 -->
+        <a href="javascript:;" id="left"></a>
+        <!-- 后退按钮 -->
+        <a href="javascript:;" id="right"></a>
+    </div>
+    <script src="../jquery-1.11.3.js"></script>
+    <!-- <script src="index.js"></script> -->
+    <script src="pratice1.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>$attr</title>
+</head>
+
+<body>
+    <div class="a b"></div>
+    <div class="a.b"></div>
+    <div class="b"></div>
+    <div class="aa">
+        <div class="a"></div>
+    </div>
+    <div ss="a b"></div>
+    <div ss="a.b"></div>
+    <div ss="b"></div>
+    <div ss="aa"></div>
+</body>
+
+</html>
+<script>
+function attr(name, value) {
+    let res = [];
+    let reg = new RegExp(`\\b${value}\\b`);
+    let all = Array.from(document.getElementsByTagName("*"));
+    all.forEach((item, index) => {
+        if (item.hasAttribute(name) && reg.test(item.getAttribute(name))) {
+            res.push(item)
+        }
+    });
+    return res;
+}
+    console.log(attr("class", "a"));
+</script>

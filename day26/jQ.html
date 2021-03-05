@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="box" style="background: lavender;width: 200px;height: 200px;border: 1px solid red;">box
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <div class="ct">
+                <a href="">5</a>
+                <a href="">6</a>
+            </div>
+        </div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<!-- <script src="jq源码.js"></script> -->
+<script>
+jQuery.extend({
+    // 往自己身上拓展 $.sss
+    sss:function(){
+        console.log("拓展自己方法");
+    }
+})
+jQuery.fn.extend({
+    // 往jQuery原型上添加 $().fff
+    fff:function(){
+        console.log("拓展原型方法");
+    }
+})
+</script>

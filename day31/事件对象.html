@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            margin: 800px auto;
+            background: orangered;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            border: 100px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <a href="" id="btn">跳转</a>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById("box");
+    box.onclick = function (e) {
+        // 当用户通过键盘或鼠标触发一些对应的事件时，浏览器会把当前事件的一些信息以实参的形式传递给当前的方法
+        // 1.clientX：当前鼠标点击的位置距离浏览器左侧的距离（长度）
+        // 2.clientY：当前鼠标点击的位置距离浏览器上侧的距离（高度）
+        // 3.offsetX：当前鼠标点击的位置距离当前盒子左侧的距离（长度）（不包含border）
+        // 4.offsetY：当前鼠标点击的位置距离当前盒子上侧的距离（高度）
+        // 5.pageX：当前鼠标点击的距离距离body最左侧的距离（长度）
+        // 6.pageY：当前鼠标点击的距离距离body顶部的距离（高度）
+        console.log(e);
+    }
+    // btn.onclick = function (e) {
+    //     console.log(e);
+    //     e.returnValue = false;
+    // }
+    window.oncontextmenu = function(e){
+        e.returnValue = false;
+    }
+</script>

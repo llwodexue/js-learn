@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #box,
+    #bigBox {
+      width: 350px;
+      height: 350px;
+      border: 1px solid red;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    #bigBox {
+      display: none;
+      top: -350px;
+      left: 400px;
+    }
+
+    #bigBox img {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      left: 0;
+      top: 0;
+    }
+
+    #mark {
+      width: 175px;
+      height: 175px;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.281);
+      top: 0;
+      left: 0;
+      cursor: move;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <img src="./img/iphone.jpg" alt="">
+  </div>
+  <div id="bigBox">
+    <img src="./img/iphone_big.jpg" alt="">
+  </div>
+  <script>
+    let box = document.getElementById("box");
+    let bigBox = document.getElementById("bigBox");
+    let img = bigBox.querySelector("img");
+    let mark = null;
+    box.onmouseenter = function () {
+      mark = document.createElement("div");
+      mark.id = "mark";
+      box.appendChild(mark);
+    }
+    box.onmousemove = function (e) {
+      let curLeft = e.clientX - box.offsetLeft - mark.offsetWidth / 2;
+      let curTop = e.clientY - box.offsetTop - mark.offsetWidth / 2;
+      let maxW = box.offsetWidth - mark.offsetWidth;
+      let maxT = box.offsetHeight - mark.offsetHeight;
+      curLeft < 0 ? curLeft = 0 : (curLeft > maxW ? curLeft = maxW : null)
+      curTop < 0 ? curTop = 0 : (curTop > maxT ? curTop = maxT : null)
+      mark.style.left = curLeft + "px";
+      mark.style.top = curTop + "px";
+      bigBox.style.display = "block";
+      img.style.left = -2 * curLeft + "px";
+      img.style.top = -2 * curTop + "px";
+    }
+    box.onmouseleave = function () {
+      box.removeChild(mark);
+      bigBox.style.display = "none";
+    }
+  </script>
+  <!-- <script src="pratice1.js"></script> -->
+  <!-- <script>
+    let bigBox = document.getElementById('bigBox');
+    let box = document.getElementById('box');
+    let mark = null;
+    let img = bigBox.getElementsByTagName('img')[0];
+    box.onmouseenter = function () {
+      bigBox.style.display = 'block';
+      mark = document.createElement('div');
+      mark.id = 'mark';
+      box.appendChild(mark);
+    }
+    box.onmousemove = function (e) {
+      let curLeft = e.clientX - box.offsetLeft - mark.offsetWidth / 2;
+      let curTop = e.clientY - box.offsetTop - mark.offsetHeight / 2;
+      let minL = 0;
+      let maxL = box.offsetWidth - mark.offsetWidth;
+      let minT = 0;
+      let maxT = box.offsetHeight - mark.offsetHeight;
+
+      // 判断四个边界
+      if (curLeft < minL) {
+        curLeft = minL;
+      }
+      if (curLeft > maxL) {
+        curLeft = maxL
+      }
+      if (curTop < minT) {
+        curTop = minT
+      }
+      if (curTop > maxT) {
+        curTop = maxT
+      }
+
+      mark.style.left = curLeft + 'px';
+      mark.style.top = curTop + 'px';
+
+      img.style.left = -(curLeft / 350 * 700) + 'px';
+      // img.style.left = -curLeft*2 + 'px';
+      img.style.top = -curTop * 2 + 'px';
+
+    }
+    box.onmouseleave = function () {
+      box.removeChild(mark);
+      bigBox.style.display = 'none';
+    }
+  </script> -->
+</body>
+
+</html>

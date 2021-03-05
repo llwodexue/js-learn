@@ -1,0 +1,11 @@
+html,
+body {
+  background: url("../images/bg.jpg");
+}
+div {
+  width: 200px;
+  height: 200px;
+  background: red;
+  border: 1px solid black;
+  transform: scale(1.2);
+}

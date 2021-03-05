@@ -1,0 +1,32 @@
+/* 利用定位（知道当前元素宽高） */
+/* #box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+} */
+
+/* 利用定位（不知道元素宽高） */
+/* #box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+/* #box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+} */
+
+/* flex */
+/* #ct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

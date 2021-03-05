@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: #50C9C3;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #96DEDA, #50C9C3);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #96DEDA, #50C9C3);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: lavender;
+            border-radius: 50%;
+            left: 200px;
+            position: absolute;
+        }
+
+        button {
+            position: absolute;
+            width: 100px;
+            top: 300px;
+            left: 0;
+        }
+
+        button:last-of-type {
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <button id="right">往右</button>
+    <button id="left">往左</button>
+</body>
+
+</html>
+<!-- <script src="jquery-1.11.3.js"></script> -->
+<!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.3.min.js"></script> -->
+<script>
+    let box = document.getElementById('box')
+    let right = document.getElementById('right')
+    let left = document.getElementById('left')
+
+
+    /*
+     *  固定时间
+     *  时间比=路程比
+     *  已经走过的时间/总时间=以及走过的路程/总路程
+     */
+
+// let duration = 3000
+// let time = 0
+// let timer = null
+// let begin = parseFloat(getComputedStyle(box).left)
+// let maxLeft = document.documentElement.clientWidth - box.offsetWidth
+// right.onclick = function () {
+//     clearInterval(timer)
+//     timer = setInterval(() => {
+//         time += 20
+//         if (time >= duration) {
+//             clearInterval(timer)
+//             box.style.left = maxLeft + "px"
+//             return
+//         }
+//         let left = (maxLeft - begin) / duration * time + begin
+//         box.style.left = left + "px"
+//     }, 20);
+// }
+
+    // let left = linear(time, duration, maxLeft, begin)
+    /*
+    t:time 已经运动的时间
+    d:duration 总时间
+    c:change 总路程
+    b:begin 开始位置
+    返回值就是当前元素需要达到的位置
+    */
+    // function linear(t, d, c, b) {
+    //     return t / d * c + b
+    // }
+
+
+
+
+
+
+    /*
+     *  固定步长
+     */
+
+    // animate第一个参数是一个对象，对象里存放的是当前元素某个样式的目标值，第二个参数是移动的总时间，第三个参数是动画的模式
+    // stop：停止所有在指定元素上正在运行的动画
+    // $("#right").click(function () {
+    //     $("#box").stop(true).animate({
+    //         left: maxLeft
+    //     }, 3000, "linear")
+    // })
+    // $("#left").click(function () {
+    //     $("#box").stop(true).animate({
+    //         left: 0
+    //     }, 3000, "linear")
+    // })
+
+    // let timer = null
+    // right.onclick = function () {
+    //     clearInterval(timer)
+    //     timer = setInterval(() => {
+    //         // 先获取当前元素的left
+    //         // 给当前元素的left累加
+    //         // 设置回去
+    //         // 如果当前元素的left值大于maxLeft的时候就清除定时器
+    //         let cLeft = parseFloat(window.getComputedStyle(box)["left"])
+    //         cLeft += 10
+    //         if (cLeft >= maxLeft) {
+    //             clearInterval(timer)
+    //             box.style.left = maxLeft + "px"
+    //             return
+    //         }
+    //         box.style.left = cLeft + "px"
+    //     }, 20)
+    // }
+    // left.onclick = function () {
+    //     clearInterval(timer)
+    //     timer = setInterval(() => {
+    //         let cLeft = parseFloat(window.getComputedStyle(box)["left"])
+    //         cLeft -= 10
+    //         if (cLeft <= 0) {
+    //             clearInterval(timer)
+    //             box.style.left = 0 + "px"
+    //             return
+    //         }
+    //         box.style.left = cLeft + "px"
+    //     }, 20)
+    // }
+
+    // left.onclick = ti
+    // right.onclick = ti
+    // function ti() {
+    //     clearInterval(timer)
+    //     timer = setInterval(() => {
+    //         let cLeft = parseFloat(window.getComputedStyle(box)["left"])
+    //         if (this.id.length > 4) {
+    //             cLeft += 10
+    //             if (cLeft >= maxLeft) {
+    //                 clearInterval(timer)
+    //                 box.style.left = maxLeft + "px"
+    //                 return
+    //             }
+    //         } else {
+    //             cLeft -= 10
+    //             if (cLeft <= 0) {
+    //                 clearInterval(timer)
+    //                 box.style.left = 0 + "px"
+    //                 return
+    //             }
+    //         }
+    //         box.style.left = cLeft + "px"
+    //     },20)
+    // }
+</script>

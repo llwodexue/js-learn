@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>回到顶部</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .back {
+                position: fixed;
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+                border-radius: 50%;
+                text-align: center;
+                background: aquamarine;
+                bottom: 20px;
+                right: 20px;
+                cursor: pointer;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img src="taobao.png" alt="" />
+            <img src="taobao.png" alt="" />
+            <img src="taobao.png" alt="" />
+            <img src="taobao.png" alt="" />
+            <img src="taobao.png" alt="" />
+            <div class="back">回到顶部</div>
+        </div>
+    </body>
+</html>
+<script src="utils.js"></script>
+<script>
+let back = document.querySelector(".back");
+back.onclick = function () {
+    // 获取当前浏览器滚动条卷曲高度
+    let winT = utils.win("scrollTop");
+    let part = winT / 50;
+    // 把当前浏览器滚动条卷曲的高度平均分成50份，定时器每隔 20ms 就执行一次
+    let timer = setInterval(() => {
+        winT -= part;
+        utils.win("scrollTop", winT);
+        if (winT <= 0) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }, 20);
+};
+let winH = utils.win("clientHeight"); // 当前浏览器可视区域
+function check() {
+    // 当浏览器滚动条高度大于等于一屏的高度时就让回到顶部显示
+    let winT = utils.win("scrollTop");
+    if (winT >= winH) {
+        back.style.display = "block";
+    } else {
+        back.style.display = "none";
+    }
+}
+window.onscroll = check;
+</script>

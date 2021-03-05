@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #main {
+            width: 479px;
+            height: 591px;
+            background: red;
+            margin: 0 auto;
+            color: #fff;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .shopContent li {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .shopContent button {
+            width: 52px;
+            height: 44px;
+        }
+
+        .add {
+            background: black;
+        }
+
+        .sub {
+            background: black;
+        }
+
+        .num {
+            width: 44px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 5px;
+            background: #fff;
+            color: #333;
+        }
+
+        .shopInfo {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        .shopInfo p {
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul class="shopContent">
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价:<b class="itemPrice">1</b>元 小计：<span class="xjMoney">0</span> 元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价:<b class="itemPrice">2</b>元 小计：<span class="xjMoney">0</span> 元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价:<b class="itemPrice">3</b>元 小计：<span class="xjMoney">0</span> 元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价:<b class="itemPrice">4</b>元 小计：<span class="xjMoney">0</span> 元
+                </span>
+            </li>
+        </ul>
+        <div class="shopInfo">
+            <p>商品共<span class="totalNum">0</span>件</p>
+            <p>共花了<span class="totalMoney">0</span>元</p>
+            <p>其中最贵的商品单价是<span class="specileItemPrice">0</span>元</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../jquery/jquery.js"></script>
+<script>
+    //所有按钮
+    $(".shopContent button").click(function () {
+        //几个
+        let priceNum = +$(this).parent().find(".num").text();
+        let flag = $(this).attr("flag")
+        //父级
+        let parent=$(this).parent();
+        //单价
+        let itemPrice=+parent.find(".itemPrice").text();
+        //小计 
+        let xjMoney=parent.find(".xjMoney");
+        if (flag == 1) {
+            priceNum = priceNum + 1
+        } else {
+            if (priceNum - 1 >= 0) {
+                priceNum = priceNum - 1
+            }
+        }
+        parent.find(".num").text(priceNum);
+        xjMoney.text(priceNum*itemPrice)
+        //共件数
+        var a=0;
+        $(".num").each(function(index,item){a+=(+$(item).text())})
+        //赋值
+        $(".shopInfo .totalNum").text(a);
+        //共花费
+        var b=0;
+        $(".xjMoney").each(function(index,item){b+=(+$(item).text())})
+        //赋值
+        $(".totalMoney").text(b)
+        //最贵单品
+        var lis=$(".shopContent li");
+        var newlisNum=0;
+        lis.each(function(index,item){
+            if($(item).find(".num").text()!=0){
+                var lisNum=$(item).find(".itemPrice").text();
+                if(lisNum>newlisNum){
+                    newlisNum=lisNum;
+                }
+            }
+        })
+        $(".shopInfo .specileItemPrice").text(newlisNum);
+    })
+</script>

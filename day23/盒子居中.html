@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子居中</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#ct{
+    height: 300px;
+    width: 300px;
+    border: 3px solid blue;
+    margin: auto;
+    position: relative;
+}
+#box{
+    height: 100px;
+    width: 100px;
+    background: red;
+}
+html,body{
+    height: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ct">
+    <div id="box"></div>
+</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script src="pratice3.js"></script>

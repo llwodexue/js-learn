@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树形菜单</title>
+    <style type="text/css">
+        ul {
+            list-style: none;
+        }
+
+        .box span {
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            cursor: pointer;
+        }
+
+        .box span.close:before {
+            content: "+";
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .box span.open:before {
+            content: "-";
+            font-size: 30px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="box" id="box">
+        <li><span>第一级菜单</span>
+            <ul>
+                <li><span>第二级菜单</span>
+                    <ul>
+                        <li><span>第三级菜单</span>
+                            <ul>
+                                <li><span>第四级菜单</span></li>
+                                <li><span>第四级菜单</span></li>
+                            </ul>
+                        </li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                    </ul>
+                </li>
+                <li><span>第二级菜单</span>
+                    <ul>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                    </ul>
+
+                </li>
+                <li><span>第二级菜单</span>
+                </li>
+                <li><span>第二级菜单</span></li>
+            </ul>
+        </li>
+        <li><span>第一级菜单</span></li>
+        <li><span>第一级菜单</span></li>
+        <li><span>第一级菜单</span></li>
+    </ul>
+</body>
+
+</html>
+<script>
+    // 1.获取所有的span元素
+    let spans = document.getElementsByTagName("span");
+    // 2.循环所有的span，判断span有没有兄弟元素，如果有就给当前span加上一个close类名，如果没有那就加上一个open类名
+    for (let i = 0; i < spans.length; i++) {
+        const cur = spans[i];
+        // 判断一下当前的span有没有兄弟元素，如果有那他里面就有东西，这样就让当前的span加上close类名，否则加上open类名
+        // 并且让他的兄弟元素默认隐藏
+        if (cur.nextElementSibling) {
+            cur.classList.add("close");
+            cur.nextElementSibling.style.display = "none";
+        } else {
+            cur.classList.add("open");
+        }
+    }
+    box.onclick = function (e) {
+        // 点击当前的span
+        let cur = e.target;
+        if (cur.nodeName !== "SPAN") {
+            return;
+        }
+        // 当前span的下一个兄弟元素
+        let next = cur.nextElementSibling
+        // 如果当前next有值，那就可以进行打开和关闭操作，如果当前next没有值，那就什么都不做
+        if (next) {
+            // 判断一下当前的span有没有close类名，如果有，那就是展开，如果没有就是关闭
+            // cur.classList.contains("close")
+            if (cur.className.includes("close")) {
+                cur.className = "open";
+                next.style.display = "block";
+            } else {
+                cur.className = "close";
+                next.style.display = "none";
+            }
+            let uls = next.getElementsByTagName("ul");
+            for (let i = 0; i < uls.length; i++) {
+                uls[i].style.display = "none";
+                uls[i].previousElementSibling.className = "close";
+            }
+        }
+    }
+</script>

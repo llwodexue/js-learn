@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>异步</title>
+    </head>
+    <body></body>
+</html>
+<!-- <script src="pratice3.js"></script> -->
+<!-- <script>
+    function get() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("get", "data.json");
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                console.log(JSON.parse(xhr.responseText));
+            }
+        };
+        xhr.send();
+    }
+    get();
+    console.log(100);
+</script>
+<script src="购物车/jquery-1.11.3.js"></script>
+<script>
+    $.ajax({
+        url: "data.json",
+        async: true,
+        success: (res) => {
+            console.log(res);
+        },
+    });
+</script> -->
+<script src="购物车/jquery-1.11.3.js"></script>
+<!-- <script>
+    // promise就是把异步代码以同步的形式展示
+let p = new Promise((resolve, reject) => {
+    $.ajax({
+        url: "data.json",
+        method: 'get',
+        async: true,
+        success: (res) => {
+            resolve();
+        },
+    });
+});
+p.then(
+    () => {
+        console.log(100);
+    },
+    () => {}
+);
+    // 当promise的resolve函数执行，那then种的第一个回调函数就会执行，这样我们就可以在then的第一个回调函数中发送第二个请求了
+</script> -->
+<script src="pratice3.js"></script>

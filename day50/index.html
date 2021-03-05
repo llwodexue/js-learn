@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./node_modules/qs/dist/qs.js"></script>
+    <script src="./jsonp.js"></script>
+    <script>
+        // new Promise(resolve => {
+        //     jsonp({
+        //         url: "http:127.0.0.1:1001/jsonpTest",
+        //         params: {
+        //             lx: 0,
+        //             from: "weixin"
+        //         },
+        //         jsonpName: "cb",
+        //         success: result => {
+        //             console.log(result);
+        //         }
+        //     })
+        // }).then(data => {
+        //     console.log(data);
+        // })
+
+        jsonp({
+            url: 'https://www.baidu.com/sugrec',
+            params: {
+                prod: 'pc',
+                wd: '珠峰'
+            },
+            jsonpName: 'cb',
+            success: result => {
+                console.log(result);
+            }
+        })
+    </script>
+    <!-- <script>
+        function func(result) {
+            console.log(result);
+        }
+    </script> -->
+    <!-- <script src="http:127.0.0.1:1001/jsonpTest?cb=func"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+<ul id="lists">
+    <li class="bg">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li id="end">4</li>
+</ul>
+    </body>
+</html>
+<script>
+    // var lis = document.getElementsByTagName("li");
+    var lis = document.querySelectorAll("li");
+    lis[0].classList.remove("bg");
+    lists.removeChild(end);
+    console.log(lis.length); // 3
+    console.log(lis[0].classList); // DOMTokenList [value: ""]
+</script>

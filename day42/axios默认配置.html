@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+
+</html>
+<script>
+    // 对 axios进行二次配置
+    axios.defaults.baseURL = "json";
+    axios.defaults.timeout = 3000;
+    axios.defaults.withCredentials = true;
+    axios.defaults.headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    axios.defaults.transformRequest = function (data, header) {
+        let str = "";
+        for (let key in data) {
+            str += `${key}${data[key]}&`;
+        }
+        str = str.slice(0, str.length - 1);
+        return str;
+    }
+    axios.defaults.transformResponse = function (data) {
+        // data是服务器给前端返回的数据（响应主体）
+        console.log(data);
+        let res = JSON.parse(data);
+        if (res.code === 0) {
+            return res.data;
+        } else {
+            return [];
+        }
+    }
+
+    // 添加请求拦截器
+    axios.interceptors.request.use(function (config) {
+        // 在这里你可以对当前请求的所有配置做出修改
+        console.log(config);
+        return config;
+    })
+    // 添加响应拦截器
+    // use可以传递两个回调函数，第一个是请求成功的执行函数，第二个是请求失败的执行函数，两个函数的返回值会影响下边then中回调函数的执行
+    axios.interceptors.response.use(function (res) {
+        // 在这里你可以对当前请求的所有配置做出修改
+        console.log(res);
+        return res.data;
+    }, function (rej) {
+        return Promise.reject("请求失败");
+    })
+
+    axios.get("1.json").then((res) => {
+        console.log(res);
+    }).catch((rea) => {
+        console.log(rea);
+    })
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #ct {
+            display: flex;
+        }
+
+        #box,
+        #bigBox {
+            width: 350px;
+            height: 350px;
+            border: 1px solid rgb(102, 102, 102);
+            overflow: hidden;
+            position: relative;
+        }
+
+        #bigBox {
+            left: 100px;
+            display: none;
+        }
+
+        #bigBox img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #mark {
+            width: 175px;
+            height: 175px;
+            background: rgba(0, 0, 0, .3);
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ct">
+        <div id="box">
+            <img src="img/iphone.jpg" alt="">
+        </div>
+        <div id="bigBox">
+            <img src="img/iphone_big.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById("box");
+    let bigBox = document.getElementById("bigBox");
+    let img = bigBox.querySelector("img");
+    let mark = null;
+    box.onmouseenter = function () {
+        // 动态创建mark然后把mark放到box中
+        mark = document.createElement("div");
+        mark.id = "mark";
+        box.appendChild(mark);
+        bigBox.style.display = "block";
+    }
+    box.onmousemove = function (e) {
+        let moveW = e.clientX - box.offsetLeft - mark.offsetWidth / 2;
+        let moveH = e.clientY - box.offsetTop - mark.offsetHeight / 2;
+        let maxW = box.offsetWidth - mark.offsetWidth;
+        let maxH = box.offsetHeight - mark.offsetHeight;
+        // 判断边界
+        moveW < 0 ? moveW = 0 : (moveW > maxW ? moveW = maxW : null)
+        moveH < 0 ? moveH = 0 : (moveH > maxH ? moveH = maxH : null)
+        mark.style.left = moveW + "px";
+        mark.style.top = moveH + "px";
+        img.style.left = -2 * moveW + "px";
+        img.style.top = -2 * moveH + "px";
+    }
+    box.onmouseleave = function () {
+        // 当鼠标滑出时，让mark移除，让大盒子隐藏
+        box.removeChild(mark);
+        bigBox.style.display = "none";
+    }
+</script>

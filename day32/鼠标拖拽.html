@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标拖拽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: orangered;
+            position: absolute;
+            color: antiquewhite;
+            text-align: center;
+        }
+
+        h3 {
+            height: 30px;
+            line-height: 30px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <h3 id="title">vscode</h3>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById("box");
+    let title = document.getElementById("title");
+    let left = (document.documentElement.clientWidth - box.offsetWidth) / 2;
+    let t = (document.documentElement.clientHeight - box.offsetHeight) / 2;
+    box.style.left = left + "px";
+    box.style.top = t + "px";
+
+    // 实现拖拽的逻辑
+    // 当用户按下鼠标的时候开始给当前title绑定鼠标移动事件，当用户抬起鼠标时移除title移动事件
+    title.onmousedown = function (e) {
+        // 寄了初始鼠标的clientX和clientY
+        this.oldX = e.clientX;
+        this.oldY = e.clientY;
+        // 记录初始盒子left和top
+        this.l = parseFloat(box.style.left);
+        this.t = parseFloat(box.style.top);
+        this.onmousemove = move;
+    }
+
+    function move(e) {
+        let curLeft = e.clientX - this.oldX + this.l;
+        let curTop = e.clientY - this.oldY + this.t;
+        box.style.left = curLeft + "px"
+        box.style.top = curTop + "px"
+    }
+    title.onmouseup = function () {
+        title.onmousemove = null;
+    }
+    // 盒子每移动一次就需要DOM回流重绘一次，消耗性能，这时如果鼠标移动太快，浏览器计算盒子的位置的速速跟不上鼠标移动的速度，所以鼠标就跑出盒子外，这时在盒子外抬起鼠标并没有触发title的onmouseup事件，这时title的onmousemove事件并没有被移除
+
+</script>

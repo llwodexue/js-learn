@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装ajax</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    (function () {
+        // 默认的参数配置
+        let defaults = {
+            url: "null",
+            method: "GET",
+            data: null,
+            dataType: "JSON",
+            async: true,
+            cache: true,
+            timeout: null,
+            headers: null,
+            success: null,
+            error: null,
+        };
+
+        function ajax(options) {
+            return new init(options);
+        }
+        ajax.prototype = {
+            constructor: ajax,
+            send: function (options) {
+                let self = this;
+                for (const key in defaults) {
+                    self[key] = options[key];
+                }
+                // 把当前xhr放到init()的实例上，方便以后查看
+                let xhr = self.xhr = new XMLHttpRequest();
+                // 1.首先看当前的data是对象还是字符串
+                self.handleData();
+                if (self.data) self.handleUM();
+                if (self.timeout) xhr.timeout = self.timeout;
+                xhr.open(self.method, self.url, self.async);
+                if (self.headers) {
+                    for (const key in self.headers) {
+                        if (Object.hasOwnProperty.call(self.headers, key)) {
+                            xhr.setRequestHeader(key, encodeURI(self.headers[key]));
+                        }
+                    }
+                }
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (/^(2|3)\d{2}$/.test(status)) {
+                            let res = "";
+                            switch (self.dataType.toUpperCase()) {
+                                case "JSON":
+                                    res = JSON.parse(xhr.response);
+                                    break;
+                                case "TEXT":
+                                    res = xhr.responseText;
+                                    break;
+                                case "XML":
+                                    res = xhr.responseXML;
+                                    break;
+                            }
+                            self.success && self.success(res, xhr.statusText, xhr);
+                        } else {
+                            self.error && self.error(null, xhr.statusText, xhr);
+                        }
+                    }
+                };
+                console.dir(self);
+                xhr.send(self.data);
+            },
+            handleData: function () {
+                if (this.data === null && typeof this.data === "string") return;
+                let str = "";
+                for (const key in this.data) {
+                    if (Object.hasOwnProperty.call(this.data, key)) {
+                        str += `${key}=${this.data[key]}&`;
+                    }
+                }
+                this.data = str.slice(0, str.length - 1);
+            },
+            handleUM: function () {
+                let reg = /^(get|delete|head|options)$/i;
+                if (reg.test(this.method)) {
+                    this.url += `${this.handleQ()}${this.data}`;
+                    this.data = null;
+                    if (!this.cache) this.url = `${this.url}_num=${Date.now()}`;
+                }
+            },
+            handleQ: function () {
+                return this.url.includes("?") ? "&" : "?";
+            },
+        };
+
+        // 把用户传递options和默认的defaults进行合并，以用户传递的参数为主
+        function init(options) {
+            options = {
+                ...defaults,
+                ...options
+            };
+            if (!options.url) {
+                throw new Error("url is must be supported")
+            }
+            this.send(options);
+        }
+        // 把ajax的原型赋值给init的原型
+        init.prototype = ajax.prototype;
+        // 把ajax方法暴露在window上
+        window.ajax = ajax;
+    })();
+    ajax({
+        url: "./data.json",
+        cache: false,
+        data: {
+            name: 1,
+            age: 2
+        },
+        headers: {
+            user: "hello",
+            agent: "world"
+        },
+        success: (data, statusText, xhr) => {
+            console.log(data, statusText, xhr);
+        },
+        error: (data, statusText, xhr) => {
+            console.log(data, statusText, xhr);
+        },
+    });
+</script>

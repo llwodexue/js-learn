@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <input type="text">
+</body>
+
+</html>
+<script>
+    let box = document.getElementById("box");
+    // box.addEventListener("click", fn);
+    // box.removeEventListener("click", fn);
+    // 在卸载事件的方法时给removeEventListener传递的参数要和绑定的时候严格一致
+/*     let inp = document.querySelector("input[type=text]")
+    inp.onkeydown = function () {
+        // 在此函数里拿到input框的值是上一次的值，因为当前按下的那一次此函数就触发了，那时候最新的内容还没有输入到input框
+        console.log("按下", this.value);
+    }
+    inp.onkeyup = function () {
+        // 在此函数里拿到的是最新的内容，因为当此函数执行的时候内容已经输入完了
+        console.log("抬起", this.value);
+    }
+    inp.onkeypress = function () {
+        // 拿到的也是上一次的值
+        console.log("按压", this.value);
+    } */
+
+    // 键盘按键的keyCode码
+    // e是当前事件的事件对象，只有键盘事件的事件对象里才会有keyCode这些属性，分别代表了当前点击的键的一些标识
+    // 当前用户点击键盘的按键时，通过keyCode判断一下，通过当前用户点击的到底是哪个按键，从而让你的盒子的位置做出相应的移动位置
+    document.body.onkeyup = function(e){
+        console.log(e.keyCode);
+    }
+</script>

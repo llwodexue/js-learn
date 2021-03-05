@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="price.css" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">
+            <ul class="list">
+                <li>
+                    <i></i>
+                    <em>0</em>
+                    <i></i>
+                    <span>
+                        单价：<strong>12.5元 </strong> 小计：<strong>0元</strong>
+                    </span>
+                </li>
+                <li>
+                    <i></i>
+                    <em>0</em>
+                    <i></i>
+                    <span>
+                        单价：<strong>10.5元 </strong> 小计：<strong>0元</strong>
+                    </span>
+                </li>
+                <li>
+                    <i></i>
+                    <em>0</em>
+                    <i></i>
+                    <span>
+                        单价：<strong>8.5元 </strong> 小计：<strong>0元</strong>
+                    </span>
+                </li>
+                <li>
+                    <i></i>
+                    <em>0</em>
+                    <i></i>
+                    <span>
+                        单价：<strong>8元 </strong> 小计：<strong>0元</strong>
+                    </span>
+                </li>
+                <li>
+                    <i></i>
+                    <em>0</em>
+                    <i></i>
+                    <span>
+                        单价：<strong>14.5元 </strong> 小计：<strong>0元</strong>
+                    </span>
+                </li>
+            </ul>
+            <div class="info">
+                <span>商品共合计：<em>0</em>件</span>
+                <span>共花费了：<em>0</em>元</span>
+                <br />
+                <br />
+                <span>其中最贵的商品单价是：<em>0</em>元</span>
+            </div>
+        </div>
+    </div>
+    <script src="./jquery-1.11.3.js"></script>
+    <script>
+            /* 
+            1、获取所有的i标签
+            2、给每一个i标签绑定点击事件
+             */
+             let $btns = $('.list i');
+             let $infoEms = $('.info em'); // 获取下半部分里的所有em元素
+             let $ems = $('.list em'); // 获取上部分所有的em元素
+             let $strongs = $('.list strong');
+
+             $btns.click(function(){
+                 let index = $(this).index() // 拿到当前元素在自己所有的兄弟姐妹中的索引
+                 let $count = $(this).siblings('em'); // 获取显示数量的em元素
+                 let num = parseFloat($count.html()); // 获取当前em的内容
+                 let $strong = $count.siblings('span').find('strong'); // 获取素有的strong元素
+                 let price = parseFloat($strong.eq(0).html()) // 获取当前商品的单价
+                //  console.log($strong)
+                 if(index == 0) {
+                      // 点击的减号
+                        num-- ;
+                        num<0?num = 0:null; // 
+                 }
+                 else {
+                     // 点击的加
+                     num++
+                 };
+                 $count.html(num); // 把数量设置回去
+                 $strong.eq(1).html(num*price+'元'); // 把小计设置回去
+                 computed();
+             })
+
+             function computed(){
+                let allCount = 0; // 初始化一个累加数量的变量
+                let allPrice = 0; // 初始化一个累加总计的变量
+                let ary = [0]; // 初始化一个存储商品单价的数组
+
+                // 循环上半部分所有的em元素
+                $ems.each(function(index,item){
+                    // 把每一个em元素的内容累加到allCount
+                    allCount+=parseFloat($(item).html());
+                });
+                $strongs.each(function(index,item){
+                    // 如果strong元素的索引为偶数那就是单价那个元素，如果是奇数那就是小计那个元素
+                    if(index%2===1){
+                        // 把所有的小计元素的内容累加到allPrice里
+                        allPrice+=parseFloat($(item).html())
+                    }
+                    else {
+                        // 如果当前单价对应的小计不为位0，那就把单价push到ary数组里，用来一会在里面获取最大的单价
+                        if(parseFloat($(item).next('strong').html()) !== 0){
+                            ary.push(parseFloat($(item).html()))
+                        }
+                    }
+                })
+
+                // 以下三局就是把内容重新放回页面的元素中
+                 $infoEms.eq(0).html(allCount);
+                 $infoEms.eq(1).html(allPrice);
+                 $infoEms.eq(2).html(Math.max(...ary));
+                /* 
+                1、获取所有的strong标签
+                2、循环所有的strong标签
+                3、判断当前strong的索引，如果是奇数，那就是小计的那个标签
+                 */
+             }
+    </script>
+</body>
+
+</html>

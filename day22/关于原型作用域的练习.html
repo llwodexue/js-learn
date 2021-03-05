@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let n = m = 10;
+    var obj = {
+      n: 10,
+      f1: (function (m) {
+        n += n;
+        return () => {
+          console.log(++this.n, this.m == undefined ? m : ++m);
+        }
+      })(n)
+    }
+
+    function Fn() {
+      this.n = n;
+      n++ < 21 ? n++ : this.n++;
+      f1.call(this, this.n);
+      this.getN = function () {
+        console.log(this.n++); // 
+      }
+    }
+
+    function f1(n) { // 
+      console.log(this.n++); // 
+    }
+    var f2 = new Fn(); //
+    var f3 = new Fn(); //
+    console.log(f2, f3);//
+    Fn.prototype.f1 = f1; //
+    f2.__proto__.f1 = f1;  //
+    Fn.prototype.__proto__.f1 = f1;  //
+    Fn.prototype.__proto__.getN = f2.getN;  //
+
+    console.log(f2.getN == f3.getN); //
+    console.log(f2.getN === Fn.prototype.getN);  //
+    console.log(f2.f1 === Object.f1); // 
+
+    obj.f1();
+    obj.__proto__.f1();
+    obj.getN();
+    f2.f1();
+    f3.f1.call(f2);
+
+
+    //---------------------------------------------------
+    let i = undefined;
+    console.log(i++); // NaN
+  </script>
+</body>
+
+</html>

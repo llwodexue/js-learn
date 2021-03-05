@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推箱子</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background: orangered;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>
+<div id="box"></div>
+
+<script>
+    let box = document.getElementById("box");
+    document.body.onkeydown = function (e) {
+        // 获取当前盒子横向移动的最大距离
+        let mW = document.documentElement.clientWidth - box.offsetWidth;
+        // 获取当前盒子纵向移动的最大距离
+        let mT = document.documentElement.clientHeight - box.offsetHeight;
+        let left = parseFloat(getComputedStyle(box).left);
+        let top = parseFloat(getComputedStyle(box).top);
+        let speed = 100;
+        // ←37 ↑38 →39 ↓40
+        switch (e.keyCode) {
+            case 37:
+                left -= speed;
+                break;
+            case 38:
+                top -= speed;
+                break;
+            case 39:
+                left += speed;
+                break;
+            case 40:
+                top += speed;
+                break;
+        }
+        top < 0 ? top = 0 : (top > mT ? top = mT : null);
+        left < 0 ? left = 0 : (left > mW ? left = mW : null);
+        box.style.left = left + "px";
+        box.style.top = top + "px";
+    }
+</script>

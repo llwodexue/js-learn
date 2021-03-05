@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #main {
+            width: 479px;
+            height: 591px;
+            background: url(bg1.png);
+            margin: 0 auto;
+            color: #fff;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .shop li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .shop button {
+            width: 52px;
+            height: 44px;
+            border: none;
+        }
+
+        .add {
+            background: url(add.png);
+        }
+
+        .sub {
+            background: url(sub.png);
+        }
+
+        .num {
+            width: 44px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 5px;
+            background: #fff;
+            color: #333333;
+        }
+
+        .shopinfo {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        .shopinfo p {
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul class="shop">
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价：<b class="itemprice">2</b>元
+                    小计: <span class="xjmoney">0</span>元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价：<b class="itemprice">3</b>元
+                    小计: <span class="xjmoney">0</span>元
+                </span>
+            </li>
+            <li>
+                <button class="add" flag="1"></button>
+                <b class="num">0</b>
+                <button class="sub" flag="0"></button>
+                <span class="info">
+                    单价：<b class="itemprice">1</b>元
+                    小计: <span class="xjmoney">0</span>元
+                </span>
+            </li>
+        </ul>
+        <div class="shopinfo">
+            <p>商品共<span class="totalnum">0</span>件</p>
+            <p>共花了<span class="totalmoney">0</span>元</p>
+            <p>选中最贵的商品单价是<span class="expensive">0</span>元</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    let $btns = $('.shop li button');
+    let $num = $('.shop .num');
+    let $price = $('.itemprice');
+    let $xjmoney = $('.xjmoney');
+    let $total = $('.shopinfo span');
+    $btns.click(function () {
+        let index = $(this).index('button');
+        let $count = $(this).siblings('.num');
+        let num = parseFloat($count.html());
+        let price = parseFloat($price.eq(Math.floor(index / 2)).html());
+        if (index % 2 == 0) {
+            num++;
+        } else {
+            num--;
+            num < 0 ? num = 0 : null;
+        }
+        $count.html(num);
+        $xjmoney.eq(Math.floor(index / 2)).html(num * price);
+        computed();
+    })
+    function computed() {
+        let allcount = 0;
+        let allprice = 0;
+        let ary = [0];
+        $num.each((index, item) => {
+            allcount += parseFloat($(item).html());
+            if ($(item).text() > 0) {
+                // ary.push(parseFloat($(item).siblings(".info").children(".itemprice").html()));
+                ary.push(parseFloat(($($price)).eq(index).html()));
+            }
+        });
+        $xjmoney.each((index, item) => allprice += parseFloat($(item).html()));
+        $total.eq(0).html(allcount);
+        $total.eq(1).html(allprice);
+        $total.eq(2).html(Math.max(...ary));
+    }
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+
+<body>
+    <script>
+        /* function fn() {
+    return new Promise((resolve, reject) => {
+        resolve(100);
+    })
+}
+fn().then(res => {
+    console.log(res);
+})
+
+// return不是promise实例，则会自动转换为成功的promise实例，return值为实参
+async function fn() {
+    return 100;
+}
+fn().then(res => {
+    console.log(res);
+}) */
+
+        /* function fn() {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    resolve(100);
+                }, 1000)
+            })
+        }
+
+        function init() {
+            fn().then(res => {
+                console.log(res);
+                return Promise.resolve();
+            });
+        } */
+
+function fn() {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res(100);
+        }, 1000)
+    })
+}
+
+async function init() {
+    let res = await fn();
+    // await下边的代码会等到上边promise的状态发生改变以后才会执行
+    console.log(res);
+}
+init();
+    </script>
+</body>
+
+</html>

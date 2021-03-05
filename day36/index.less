@@ -1,0 +1,108 @@
+// less支持变量和嵌套
+
+// 样式变量（存储样式）
+@w: 200px;
+@bgc: red;
+// 名称变量（存储选择器）
+@name: #header;
+// 属性变量
+@bg: background;
+// 路径变量（存储路径）
+@url: "./img";
+// 如果变量时选择器的话，要在@后面的变量名加大括号进行包裹
+@img-cover: center center/cover;
+// 在样式嵌套中有类似作用域的功能
+// 在样式中使用变量，寻找变量的过程类似于作用域查找机制，一层一层往外找
+@{name} {
+    @w: 300px;
+    .box1 {
+        // &代表最近的父级选择器的名称
+        &:hover {
+            color: red;
+        }
+        width: @w;
+        height: @w;
+        // 在引路径的时候如果想在变量后边加上一部分，那就用下边这种形式
+        @{bg}: url("@{url}/1.jpg") @img-cover;
+    }
+    .box2 {
+        width: @w;
+        height: @w;
+        @{bg}: lighten(@bgc, 20%);
+    }
+}
+
+// 支持函数，支持继承
+@s: #fff;
+@d: red;
+@sum: @s + @d;
+@a: 100rem;
+@f: 200px;
+#box {
+    color: @sum;
+    width: @a+ @f;
+}
+// 如果相加的时候单位不统一（没有单位），那就以第一个单位为准
+
+// 函数体一旦有形参，那函数执行的时候就得给他传递传实参
+// less函数可以有形参
+.public(@w) {
+    width: @w;
+    border: 1px solid rgb(131, 131, 131);
+    line-height: 300px;
+}
+#box {
+    .public(100px);
+}
+.p(...) {
+    border: @arguments;
+}
+#title {
+    .p(1px,solid,blue);
+}
+
+@found: "hello world";
+@var: "found";
+#wrap::after {
+    content: @@var;
+}
+.pub(@w) when(@w<100) {
+    width: 500px;
+}
+
+#box {
+    .pub(50);
+}
+.font {
+    color: red;
+    font-size: 18px;
+    line-height: 18px;
+}
+.p1 {
+    &:extend(.font);
+}
+.p2 {
+    &:extend(.font);
+}
+.p3 {
+    &:extend(.font);
+}
+
+.ct {
+    background: #999;
+    p {
+        color: #fff;
+    }
+    &:hover {
+        background: #333;
+    }
+}
+
+
+.gen-col(@n) when(@n > 0){
+	.gen-col(@n - 1);
+	.col-@{n}{
+		width: 1000px/4*@n;
+	}
+}
+.gen-col(4);

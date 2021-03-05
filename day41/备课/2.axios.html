@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script>
+        // axios是一款基于promise封装的ajax库，(jq封装的仅仅是普通版的ajax，axios是基于promise管理的ajax库)
+        console.dir(axios);
+        // axios是一个函数，但是也有好多方法都在他自己身上
+
+
+        // axios.get(url[, config]) // 基于问号传参，那config的配置传递给服务器
+        // axios.delete(url[, config])
+        // axios.head(url[, config])
+        // axios.options(url[, config])
+
+        // axios.post(url[, data[, config]])
+        // axios.put(url[, data[, config]])
+        // axios.patch(url[, data[, config]])
+
+        // axios.xxx() 他们的返回值都是一个promise的实例，当前请求成功以后，实例的状态就是成功态，请求失败实例就是失败态
+
+        /*
+            OPTIONS常用的配置信息
+                baseURL：基础的url路径
+                method: 请求方式,
+                transformRequest 允许在向服务器发送前，修改请求数据(仅仅是在POST系列请求中有效)
+                transformResponse：在服务器返回内容之后，在调用then里的回调函数之前执行(get和post请求都可以使用)
+                headers：设置请求头
+                params：GET系列请求基于问号传参传递给服务器的内容(content-type:application/x-www-form-urlencoded)【会把PARAMS中的内容拼接为X-WWW-FORM-URLENCODED这种格式，基于URL问号传参传递给服务器】
+                data:post请求时给服务器传递的参数
+                timeout：设置请求超时时间
+                withCredentials: 表示跨域请求时是否需要使用凭证
+                responseType：预设服务器返回结果的格式，默认是JSON，支持BUFFER/TEXT/STREAM/DOCUMENT...
+                validateStatus: AXIOS本身只有在HTTP状态码以2开头的时候才认为是成功，其余都认为是失败状态，当然我们可以自己来设置，基于validateStatus这个来修改
+            */
+        // axios.defaults.baseURL = 'http://xxx.com';
+
+        // 此函数是专门用来更改传递给后端的数据格式的
+        // axios.defaults.transformRequest = function(data,headers){
+        //     console.log(data,headers,45);
+        //     return 'name=1&age=2';
+        // }
+
+        // axios.defaults.validateStatus = function(status){
+        //     console.log(status);
+        //     return true
+        // }
+
+        axios.interceptors.request.use(function (request) {
+            // 对响应数据做点什么
+            console.log(request);
+            console.log(666);
+            request.params.ss = 100;
+            request.headers.ss = 100;
+            return request;
+        }, function (error) {
+            // 对响应错误做点什么
+            return Promise.reject(error);
+        });
+        axios.get('data.json', {
+            params: { name: 1, age: 2 }
+        });
+
+        // axios.post('data.json',{
+        //     name:1,age:2
+        // });
+    </script>
+</body>
+
+</html>

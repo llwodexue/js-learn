@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>封装ajax</title>
+</head>
+
+<body></body>
+
+</html>
+<script>
+(function () {
+    function ajax(options) {
+        console.log(new init(options));
+        return new init(options);
+    }
+    // 默认的参数配置
+    let defaults = {
+        url: "null",
+        method: "GET",
+        data: null,
+        dataType: "JSON",
+        async: true,
+        cache: true,
+        timeout: null,
+        headers: null,
+        success: null,
+        error: null,
+    };
+    ajax.prototype = {
+        constructor: ajax,
+        send: function () {
+            // this->当前实例
+            let {
+                method,
+                url,
+                async,
+                data,
+                dataType,
+                cache,
+                timeout,
+                headers,
+                error,
+                success
+            } = this.options;
+            // 专门用来发送请求
+            // 把当前xhr放到init(ajax)的实例上，方便以后查看
+            let xhr = this.xhr = new XMLHttpRequest();
+            // 1.首先看当前的data是对象还是字符串，如果是字符串那就不用处理，如果是对象，那就把它转换成字符串
+            data = this.handleData();
+            // 2.查看一下是否是get系列请求，如果是的话那就看看data有没有值，如果data有值，那就直接拼接到url后面
+            let reg = /^(GET|DELETE|HEAD|OPTIONS)$/i;
+            if (data && reg.test(method)) {
+                // http://www.baidu.com
+                // http://www.baidu.com?ss=100
+                url += `${this.hasQuestion(url)}${data}`;
+                // 如果是get请求，在把data使用完成之后就把它赋值为null
+                data = null;
+            }
+            // 3.如果当前是get系列请求，并且cache的值是false，说明不走缓存（在url后面拼接一个时间戳或随机数）
+            if (reg.test(method) && !cache) {
+                let num = Math.random();
+                url += `${this.hasQuestion(url)}_=${num}`;
+            }
+            // 4.处理请求超时的时间设置
+            if (timeout) {
+                xhr.timeout = timeout;
+            }
+            xhr.open(method, url, async);
+            // 5.设置请求头，headers是一个对象
+            if (headers) {
+                for (const key in headers) {
+                    if (!headers.hasOwnProperty(key)) break
+                    xhr.setRequestHeader(key, encodeURI(headers[key]))
+                }
+            }
+            xhr.onreadystatechange = function () {
+                let {
+                    readyState,
+                    status,
+                    statusText,
+                    response,
+                    responseText,
+                    responseXML
+                } = xhr;
+                if (readyState === 4) {
+                    let res = "";
+                    if (/^(2|3)\d{2}$/.test(status)) {
+                        // 成功的处理
+                        // 按照dataType的返回值进行处理
+                        switch (dataType.toUpperCase()) {
+                            case "JSON":
+                                res = JSON.parse(response);
+                                break;
+                            case "TEXT":
+                                res = responseText;
+                            case "XML":
+                                res = responseXML;
+                        }
+                        success && success(res, statusText, xhr);
+                    } else {
+                        // 进行错误的处理
+                        error && error(null, statusText, xhr);
+                    }
+                }
+            };
+            xhr.send();
+        },
+        // 封装一个方法，专门用来处理对象转字符串
+        handleData: function () {
+            // 对data参数进行处理，规定当前函数的返回值就是处理完成之后的字符串
+            let {
+                data
+            } = this.options;
+            // 如果当前的data是null或是字符串，那就直接返回
+            if (data === null || typeof data === "string") return data;
+            let str = "";
+            // 只要上边if不成立，那data就是对象
+            for (const key in data) {
+                if (!data.hasOwnProperty(key)) break;
+                // 为了防止把原型上的可枚举数组遍历处理，用hasOwnProperty给他处理一下
+                str += `${key}=${data[key]}&`;
+            }
+            // 把最后的&截取下去
+            return str.slice(0, str.length - 1);
+        },
+        hasQuestion: function (url) {
+            if (!url) {
+                url = this.options.url;
+            }
+            // 此函数会直接返回?或&
+            return url.includes("?") ? "&" : "?";
+        },
+    };
+
+    // 咱们要把用户传递options和默认的defaults进行合并，以用户传递的参数为主，如果用户没有传递这个参数，那就使用默认的
+    function init(options) {
+        // 这里的options就是用户传递的实参
+        // 把两个对象合并，如果出现相同的属性名，后面会覆盖前面
+        this.options = {
+            ...defaults,
+            ...options
+        };
+        if (!this.options.url) {
+            throw new Error("url is must be supported")
+        }
+        this.send();
+    }
+    init.prototype = ajax.prototype; // 把ajax的原型赋值给init的原型
+    window.ajax = ajax; // 把ajax方法暴露在window上
+})();
+ajax({
+    url: "data.json",
+    // data: {
+    //     name: 1,
+    //     age: 2
+    // },
+    // cache: false,
+    // headers: {
+    //     ss: 100,
+    //     aa: "你好"
+    // },
+    success: (data, statusText, xhr) => {
+        console.log(data, statusText, xhr);
+    },
+    error: (data, statusText, xhr) => {
+        console.log(data, statusText, xhr);
+    },
+});
+</script>

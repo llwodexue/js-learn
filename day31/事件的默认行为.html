@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的默认行为</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            border: 1px solid black;
+            list-style: none;
+            width: 150px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+            position: absolute;
+            padding: 10px;
+            display: none;
+        }
+
+        #box li {
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+
+</html>
+<script>
+// 鼠标右击事件
+window.oncontextmenu = function (e) {
+    // 阻止右击出现默认的菜单栏
+    e.returnValue = false;
+    box.style.display = "block";
+    box.style.left = e.clientX + "px";
+    box.style.top = e.clientY + "px";
+}
+</script>

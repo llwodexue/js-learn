@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 200%;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: lavender;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 800px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">点我啊</div>
+</body>
+
+</html>
+<script>
+    let num = 0;
+
+    function fn() {
+        console.log(++num);
+    }
+</script>
+<!-- <script src="周老师防抖.js"></script> -->
+<script src="周老师节流.js"></script>
