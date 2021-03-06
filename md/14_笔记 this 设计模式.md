@@ -274,12 +274,12 @@ var p = person("lion", 13)
 
 当函数执行的时候，前面一旦加了 new，就变成了构造函数
 
-- 如果构造函数在执行的时候没有形参，在调用的时候可以直接省去`var f=new Fn`
+- 如果构造函数在执行的时候没有形参，在调用的时候可以直接省去`var f = new Fn`
 - 类名一般会大写
 
 构造函数（类）
 
-- 内置类：sNumber String Boolean Symbol Null Undefined Object Function Array RegExp Math Date
+- 内置类：Number、String、Boolean、Symbol、Null、Undefined、Object、Function、Array、RegExp、Math、Date
 - 自定义类：
 
 ```js
