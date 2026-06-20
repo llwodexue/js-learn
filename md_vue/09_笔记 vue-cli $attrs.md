@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -47,7 +47,7 @@ vue create 项目名称
 |- src # 存储我们项目开发的源文件
 	|- main.js # 打包编译的入口文件
 	|- APP.vue # 项目页面的入口文件
-	|- views(pagrs) # 页面级的大组件
+	|- views(pages) # 页面级的大组件
 	|- components # 存放当前项目的公共组件
 		|- xxx.vue
 	|- assets # 一般存放项目中需要引入的静态资源文件

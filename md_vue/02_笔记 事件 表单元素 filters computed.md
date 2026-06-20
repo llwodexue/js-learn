@@ -138,7 +138,7 @@ npm view vue
 
 
 + 默认情况下，在输入框中无论我们输入的字母还是数组，都会被当做字符串类型进行处理
-+ number 修饰符可以让输入框中输入的内容自动转成数据类型
++ number 修饰符可以让输入框中输入的内容自动转成数字类型
 
 
 
@@ -302,7 +302,7 @@ style和class一样
     filters:{
         toFixed(val, val2){
             console.log(val2)
-            return val.toFixed(val)
+            return val.toFixed(val2)
         },
 		addZero(value) {
 			value = Number(value)

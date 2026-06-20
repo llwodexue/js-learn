@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -47,7 +47,7 @@ expire 和 cache-control区别：
 
 +  expire 是在某个事件点过期  
 Bug **本地时间**会被修改 
-+  cache-control 是在过长事件后过期 
++  cache-control 是在经过一段时间后过期 
 
 
 
@@ -55,7 +55,7 @@ eTag 和 cache-control 区别：
 
 
 
-+ eTag **有请求** 有缓存 http staus code 是304
++ eTag **有请求** 有缓存 http status code 是304
 + cache-control **无请求** 是从浏览器文件缓存读缓存
 
 
@@ -90,7 +90,7 @@ Session：会话，服务器与浏览器一段时间的会话
     1. 主要区别是 Cookie 会被发送到服务器，而 LocalStorage 不会
     2. Cookie 一般最大 4k，LocalStorage 可以用 5Mb 甚至 10Mb（各浏览器不同）
 + LocalStorage V.S. SessionStorage 
-    1. LocalStorage 一般不会自动过期（除非用户手动清除），而 SessionStorage 在回话结束时过期（如关闭浏览器）
+    1. LocalStorage 一般不会自动过期（除非用户手动清除），而 SessionStorage 在会话结束时过期（如关闭浏览器）
 + Cookie V.S. Session 
     1. Cookie 存在浏览器的文件里，Session 存在服务器的文件里
     2. Session 是基于 Cookie 实现的，具体做法就是把 SessionID 存在 Cookie 里
@@ -122,7 +122,7 @@ URI：统一资源标识符
 
 
 + HTTP：最常用的 超文本传输协议
-+ HTTPS：HTTP+SSL（TSL）比HTTP更加安全
++ HTTPS：HTTP+SSL（TLS）比HTTP更加安全
 + FTP：文件的上传下载
 
 
@@ -146,7 +146,7 @@ HTTPS -> 443
 FTP -> 21 
 +  动态网址，页面中的内容是无法被搜索引擎收录的（不利于SEO优化）  
 动态网址，静态化机制 `https://item.jd.com/....`，通过URL重写 `https://item.jd.com/detail.jsp?id=...`  
-前后端开发不分离，页面基于服务器渲染，并且向做SEO优化 
+前后端开发不分离，页面基于服务器渲染，并且想做SEO优化 
 
 
 
@@ -210,7 +210,7 @@ Hash值
 + encodeURIComponent / decodeURIComponent 对传递的参数单独编码，处理中文以及特殊符号
 + escape / unescape 客户端对中文进行编码解码，例如：cookie
 + 也可以基于自己设定的加密机制规则处理（对称加密）
-+ 对于某些数据，需要采用不可解密的（非对称加密），例如：md5
++ 对于某些数据，需要采用不可逆的哈希/摘要算法，例如：md5
 
 
 
@@ -487,7 +487,7 @@ server.listen(9999, () => {
 
 
 ```bash
-npm install vue-i8n
+npm install vue-i18n
 ```
 
 
@@ -625,7 +625,7 @@ module.exports = {
       "/api": {
         target: "http://127.0.0.1:8888/api/private/v1/", // 域名
         ws: true, // 是否启用websockets
-        changOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+        changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
         pathRewrite: {
           "^/api": "/"
         }

@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -13,7 +13,7 @@
 + 一次开发，多端共享
 + 微信用户量很庞大，几乎人人随时可用
 + 缓存最多10M，所以速度会很快
-+ 不用下载和安装（编译后的包不会超过1M）体积很小，其实不是不需要下载，只是体积很小，打开的时候就缓存到本地了，用户体验很好
++ 不用下载和安装（编译后的主包不会超过2MB）体积很小，其实不是不需要下载，只是体积很小，打开的时候就缓存到本地了，用户体验很好
 + 小程序只会在安卓、IOS和开发者工具上运行（在浏览器上无法运行）
 + JS三大部分组成：ECMAScript、DOM、BOM
 + 小程序不支持DOM，不能通过 `document.getElementById` 拿DOM
@@ -21,7 +21,7 @@
 
 
 
-微信小程序设计稿都是以iphone6位基准（在iphone6下 1rpx=0.5px）
+微信小程序设计稿都是以iPhone6为基准（在iphone6下 1rpx=0.5px）
 
 
 
@@ -189,7 +189,7 @@ try {
 
 
 
-`wx.getStorageInfoSync` 查看全部换成
+`wx.getStorageInfoSync` 查看全部缓存
 
 
 
@@ -223,7 +223,7 @@ try {
 +  `context` 多用于媒体元素，如：视频、canvas、LivePlayer、编辑器、map，返回的是这些元素的多媒体实例  
 多媒体实例：`this.videoContext=wx.createVideoContext("myVideo")`  ，后面就可以通过 `this.videoContext` 来播放、暂停来控制视频 
 +  `node` 返回节点对应的 Node 实例 
-+  `scrollOffset` 返回节点的水平/垂直滚动位子 
++  `scrollOffset` 返回节点的水平/垂直滚动位置 
 +  `fields` 是上面四个方法的合集，通过第一个参数控制返回什么数据，第二个参数接收数据 
 
 

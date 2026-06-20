@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -74,7 +74,7 @@ let Vuex = (function () {
         // options就是new Store时传递的实参
         constructor(options) {
             // state里的状态应该是响应式的，只要状态发生了改变，那使用到的该状态的组件都会得到高效的更新
-            // 利用vue的时候，data中的值会变成想听是的数据的原理，把咱们的state的属性也变成是响应的数据
+            // 利用vue的时候，data中的值会变成响应式的数据的原理，把咱们的state的属性也变成是响应的数据
             let vm = new Vue({
                 data: {
                     state: options.state,

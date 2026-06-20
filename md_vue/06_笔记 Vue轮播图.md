@@ -99,7 +99,7 @@ autoMove() {
         this.activeIndex = 1;
         // 回调函数会在本次修改数据后，DOM视图重新渲染完成之后执行
         this.$nextTick(() => {
-            // Vue 虚拟DOM渲染完成，vue事情租完，剩下需要浏览器去渲染，所以走到$nextTick回调函数的时候，浏览器还没有真正将其放入视图
+            // Vue 虚拟DOM渲染完成，vue 事情做完，剩下需要浏览器去渲染，所以走到$nextTick回调函数的时候，浏览器还没有真正将其放入视图
             this.$refs.wrapper.offsetLeft;
             this.sty.transition = `left ${this.speed}ms linear`;
             this.sty.left = -this.activeIndex * 1000 + "px";
@@ -255,7 +255,7 @@ const BannerPlugin = {
             type: Number,
             default: 3000,
         },
-        // 每一次运动动画的事件
+        // 每一次运动动画的时间
         speed: {
             type: Number,
             default: 200,
@@ -293,7 +293,7 @@ const BannerPlugin = {
                 // 浏览器有一个优化机制，如果从上往下都是写操作，没有读操作，浏览器会等待所有写操作完成之后再渲染
                 // 回调函数会在本次修改数据后，DOM视图重新渲染完成之后执行
                 this.$nextTick(() => {
-                    // Vue 虚拟DOM渲染完成，vue事情租完，剩下需要浏览器去渲染，所以走到$nextTick回调函数的时候，浏览器还没有真正将其放入视图
+                    // Vue 虚拟DOM渲染完成，vue 事情做完，剩下需要浏览器去渲染，所以走到$nextTick回调函数的时候，浏览器还没有真正将其放入视图
                     this.$refs.wrapper.offsetLeft;
                     this.sty.transition = `left ${this.speed}ms linear`;
                     this.sty.left = -this.activeIndex * 1000 + "px";

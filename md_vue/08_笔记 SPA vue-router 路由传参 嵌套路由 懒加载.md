@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -254,11 +254,11 @@ function render() {
 render();
 submit1.onclick = function () {
     // 向浏览器历史记录中新增一条数据（地址栏会改变），但是页面不会刷新，但是如果我们给定的地址不存在，当我们页面手动刷新的时候，当前地址会报404错误，所以browser-router需要服务器的支持（一般给予的支持，即使请求地址不存在，也是把首页的内容返回给客户端，而不是404）
-    history.pushState({ state: "A", }, "title", location.origin + "/A");
+    history.pushState({ state: "A" }, "title", location.origin + "/A");
     render();
 };
 submit2.onclick = function () {
-    history.pushState({ state: "B", , "title", location.origin + "/B");
+    history.pushState({ state: "B" }, "title", location.origin + "/B");
     render();
 };
 ```
@@ -510,9 +510,9 @@ const router = new VueRouter({
 
 + 路由通常会定义很多不同的页面
 + 这个页面最后被打包到哪里呢？一般情况下是一个 js 文件中
-+ 但是，这么多页面放到一个 js 文件中，必然造成这个页面飞车大
++ 但是，这么多页面放到一个 js 文件中，必然造成这个页面非常大
 + 如果一次性从服务器请求下来这个页面，可能需要花费一定的时间，甚至用户的电脑还出现短暂空白的情况
-+ 如果避免这种情况呢？使用路由懒加载即可
++ 如何避免这种情况呢？使用路由懒加载即可
 
 
 
@@ -684,7 +684,7 @@ const routes = [
 
 
 
-+ 普通配置格式：`/roter`
++ 普通配置格式：`/router`
 + 传递的方式：对象中使用 query的 key 作为传递方式
 + 传递后形成的路径：`/router?id=abc`
 
@@ -759,8 +759,8 @@ export default {
 1. `this.$router.push("path")`
 2. `this.$router.replace("path")`
 3. `this.$router.go(num)`
-4. `this.$router.forward(num)`
-5. `this.$router.back(num)`
+4. `this.$router.forward()`
+5. `this.$router.back()`
 
 
 
@@ -874,7 +874,7 @@ Object.defineProperty(Vue.prototype, '$route', {
 ### 全局守卫
 
 
-**前置钩子 **`**beforeEach**` ，需要主要调用 `next()` 函数
+**前置钩子 **`**beforeEach**` ，需要注意调用 `next()` 函数
 
 
 
@@ -933,7 +933,7 @@ router.beforeEach((to, from, next) => {
 
 
 
-**后置钩子 **`**afterEach**` ，不需要主要调用 `next()` 函数
+**后置钩子 **`**afterEach**` ，不需要注意调用 `next()` 函数
 
 
 

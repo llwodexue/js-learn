@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -33,7 +33,7 @@
 	|- pages # 各模块的页面组件，起名routes/containers均可
 	|- store # 管理vuex
 	|- App.vue # 单页面应用的入口页面或容器
-	|- main.hs # 入口
+	|- main.js # 入口
 	|- router.js # 路由管控
 ```
 
@@ -75,7 +75,7 @@
 ```html
 <router-link :to="{ name: 'customList' }"></router-link>
 
-<router-link :to="{ name: 'customList', parms: { lx: 'all' } }"></router-link>
+<router-link :to="{ name: 'customList', params: { lx: 'all' } }"></router-link>
 ```
 
 
@@ -84,11 +84,11 @@
 
 
 
-1. query 问号传递的信息会在地址栏中体现出来
+1. query 问号传递的信息会在地址栏中显示
     - 比较丑
     - 基于 router-link 或 `this.$router.push` 跳转的时候，传递的参数可以在渲染组件中获取到
-    - 在当前地址下刷新，依然可以基于 `this.$router.currentRoute.query` 获取到
-2. params 不会在地址栏中体现出现
+    - 在当前地址下刷新，依然可以基于 `this.$route.query` 获取到
+2. params 不会在地址栏中显示
     - 相对美观
     - 基于 router-link 或者 `this.$router.push` 跳转的时候，传递的参数也可以在渲染组件中获取到
     - 在当前地址下刷新，params 中信息就清空了
@@ -107,8 +107,8 @@
 // 跳转
 <router-link to="/custom/list/my">
 <router-link :to="{ name: 'customList', params: { lx: 'all' } }">
-// 获取 this.$route=this.$router.currentRoute
-this.$router.currentRoute.params
+// 获取 this.$route=this.$route
+this.$route.params
 ```
 
 

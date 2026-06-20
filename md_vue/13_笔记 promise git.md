@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -179,15 +179,16 @@ class MyPromise {
     }
     then(onFulfilled, onRejected) {
         if (this.state === "resolved") {
-            // 订阅方法
-            this.fulfilledEvent.push((result) => {
-                onFulfilled(result);
-            });
+            // 状态已确定，直接异步执行回调
+            setTimeout(() => onFulfilled(this.result))
         }
         if (this.state === "rejected") {
-            this.rejectedEvent.push((reason) => {
-                onRejected(reason);
-            });
+            setTimeout(() => onRejected(this.result))
+        }
+        // pending 状态：订阅回调，等待 resolve/reject 触发
+        if (this.state === "pending") {
+            this.fulfilledEvent.push((result) => onFulfilled(result))
+            this.rejectedEvent.push((reason) => onRejected(reason))
         }
     }
 }
@@ -261,6 +262,22 @@ class MyPromise {
     }
     then(onFulfilled = () => {}, onRejected = () => {}) {
         return new MyPromise((resolve, reject) => {
+            // 状态已确定时直接执行回调（用 setTimeout 模拟微任务）
+            if (this.state === "resolved") {
+                setTimeout(() => {
+                    let fn = onFulfilled(this.result)
+                    fn instanceof MyPromise ? fn.then(resolve, reject) : resolve(fn)
+                })
+                return
+            }
+            if (this.state === "rejected") {
+                setTimeout(() => {
+                    let fn = onRejected(this.result)
+                    fn instanceof MyPromise ? fn.then(resolve, reject) : resolve(fn)
+                })
+                return
+            }
+            // pending 状态：推入事件池等待 resolve/reject 触发
             this.fulfilledEvent.push((result) => {
                 let fn = onFulfilled(result);
                 fn instanceof MyPromise
@@ -299,7 +316,7 @@ let p2 = p1.then((res) => {
     }
 );
 
-p2.then(res) => {
+p2.then((res) => {
         console.log("p2 res: ", res);
     },(err) => {
         console.log("p2 err: ", err);
@@ -314,7 +331,7 @@ p2.then(res) => {
 ## Git
 
 
-在工作总开发的时候，一般都是多分支开发的，有一个 master 分支（主分支），它上面存储的都是最干净的代码
+在工作中开发的时候，一般都是多分支开发的，有一个 master 分支（主分支），它上面存储的都是最干净的代码
 
 
 

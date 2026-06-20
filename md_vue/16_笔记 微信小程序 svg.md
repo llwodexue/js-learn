@@ -1,4 +1,4 @@
-[toc]
+﻿[toc]
 
 
 
@@ -133,7 +133,7 @@
   事件：
     语法：bind+（:可加可不加）+"事件类型"="函数名"
     在js文件中添加相应函数，即可触发
-  传参：早行内属性增加 data-"变量名"="参数"
+  传参：在行内属性增加 data-"变量名"="参数"
   接收：函数接收事件对象e e.target.dataset里面的数据就是我们传的参数
 -->
 <view class="box1" hover-class="hover_box1">hello</view>
@@ -334,7 +334,7 @@ Page({
 
 ```html
 <!-- 
-  wx：for循环，可以循环数组、字符串、数字;变量要用双括号括起来
+  wx:for循环，可以循环数组、字符串、数字;变量要用双括号括起来
     wx:for-item="key" 将 item 命名为 key，
     wx:for-index="i" 将 index 命名为 i
 -->
@@ -359,7 +359,7 @@ Page({
  -->
 <view wx:if="{{view == 'WEBVIEW'}}"> WEBVIEW </view>
 <view wx:elif="{{view == 'APP'}}"> APP </view>
-<view wx:else="{{view == 'MINA'}}"> MINA </view>
+<view wx:else> MINA </view>
 ```
 
 
@@ -669,13 +669,13 @@ export default http;
 
 
 
-1. 从 svg 跟元素开始： 
+1. 从 svg 根元素开始： 
     - 应舍弃来自(X)HTML的doctype声明，因为基于SVG的DTD验证导致的问题比它能解决的问题更多
     - 属性version和属性baseProfile属性是必不可少的，供其它类型的验证方式确定SVG版本
     - 作为XML的一种方言，SVG必须正确的绑定命名空间（在xmlns属性中绑定）
-2. 绘制一个一个完全覆盖图形区域的矩形 `<rect />` ，把背景颜色设为红色
+2. 绘制一个完全覆盖图形区域的矩形 `<rect />` ，把背景颜色设为红色
 3. 一个半径80px的绿色圆圈 `<circle />` 绘制在红色矩形的正中央（向左偏移150px，向下偏移100px）
-4. 绘制文字"SVG"。文字被填充为白色，通过设置居中的锚点把文字定位到期望的位置：在这种情况下，中心点应该对应于绿色圆圈的重点
+4. 绘制文字"SVG"。文字被填充为白色，通过设置居中的锚点把文字定位到期望的位置：在这种情况下，中心点应该对应于绿色圆圈的中心
 
 
 
@@ -724,7 +724,7 @@ Z (or z)
 
 
 
-## transition-grop
+## transition-group
 
 
 + 在实现列表过渡的时候，如果需要过渡的元素，是通过 v-for 循环渲染出来的，不能使用 transition 包裹，需要使用 transition-group

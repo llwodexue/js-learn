@@ -69,7 +69,7 @@ Object.defineProperty(obj, "num", {
 
 
 
-+ vue内置的observer/defineRective函数，会把所有在data中初始化的属性都getter/setter（递归处理）
++ vue内置的observer/defineReactive函数，会把所有在data中初始化的属性都getter/setter（递归处理）
 + $set 不仅仅用来修改数据，而且可以把修改的属性基于defineProperty进行getter/setter
 
 

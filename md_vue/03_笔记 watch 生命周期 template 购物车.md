@@ -153,7 +153,7 @@ destroyed() {
 
 
 
-template的值可以是字符串（包裹需要结构），也可以把结构单独分离出来，放置`<template></template>>` 标记中，然后和当前组件关联
+template的值可以是字符串（包裹需要结构），也可以把结构单独分离出来，放置`<template></template>` 标记中，然后和当前组件关联
 
 
 
@@ -209,7 +209,7 @@ template的值可以是字符串（包裹需要结构），也可以把结构单
                     <td>{{item.productPrice}}</td>
                     <td><input type="number" v-model="item.productCount" min=0 max=10></td>
                     <td>{{item.productPrice * item.productCount|toFixed(2)}}</td>
-                    <td><button class="btn btn-danger" @click="del(item.id)">删除</button></td>
+                    <td><button class="btn btn-danger" @click="del(index)">删除</button></td>
                 </tr>
                 <tr>
                     <td colspan="6">总计：{{total()}}</td>
