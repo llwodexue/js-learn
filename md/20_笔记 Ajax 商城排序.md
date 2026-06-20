@@ -24,13 +24,10 @@
            console.log(xhr.responseText);
        }
    };
-   // DONE 下载操作已完成
+   // DONE 下载操作已完成，readyState 为 4
    xhr.onload = function () {
-       console.log('DONE', xhr.readyState); // readyState 为 4
-   };
-   // Done 的状态码为 200
-   xhr.onload = function () {
-     console.log('DONE', xhr.status); // DONE（完成） 200
+       console.log('DONE', xhr.readyState); // 4
+       console.log('status', xhr.status);   // 200
    };
    ```
 

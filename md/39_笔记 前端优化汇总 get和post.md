@@ -4,7 +4,7 @@
 
 ## keep-alive
 
-**保持长久链接**。在http请求头中加入`Connection: keep-alive`来告诉对方这个请求响应完成后不要关闭
+**保持长连接**。在http请求头中加入`Connection: keep-alive`来告诉对方这个请求响应完成后不要关闭
 
 ![keep-alive](https://gitee.com/lilyn/pic/raw/master/js-img/keep-alive.jpg)
 
@@ -64,7 +64,7 @@
 
    - 尽可能的减少css样式层级（选择器从右往左解析）
 
-动画时间间隔设置为1000/60，可以让动画看起啦更加丝滑，这是因为大多数屏幕渲染的时间间隔是每秒60帧
+动画时间间隔设置为1000/60，可以让动画看起来更加丝滑，这是因为大多数屏幕渲染的时间间隔是每秒60帧
 
 ## ajax
 
@@ -78,7 +78,7 @@
 
 - XML：可扩展的超文本标记语言
 
-  用自定义的标签来存储数据(在早期ajax和服务器交互都是以XML格式的数据为主，因为他能够清晰的展示出对应的数据和结构的层级，但是随着时代的发展，开始流行起了一种新的数据格式JSON，他不仅能够更加清晰的展示数据内容和层级，而且质量更小，所以现在的前后端交互都是以JsON格式的数据为主)
+  用自定义的标签来存储数据(在早期ajax和服务器交互都是以XML格式的数据为主，因为他能够清晰的展示出对应的数据和结构的层级，但是随着时代的发展，开始流行起了一种新的数据格式JSON，他不仅能够更加清晰的展示数据内容和层级，而且质量更小，所以现在的前后端交互都是以 JSON 格式的数据为主)
 
 
 
@@ -142,50 +142,65 @@ xhr.abort() // 终止当前的请求
 
 ### GET和POST区别
 
-**GET系列**
+**HTTP 请求方法分类**
 
-- GET
-- DELETE：一般用于告诉服务器删除某些信息
-- HEAD：只获取响应头的内容。响应的主体内容不想要
-- OPTIONS：试探性请求，给服务器发送请求，看看服务器能不能接收到，如果接收到能不能正常的返回
+| 系列 | 方法 | 用途 |
+| --- | --- | --- |
+| GET | GET | 从服务器获取资源 |
+| GET | DELETE | 删除服务器上的资源 |
+| GET | HEAD | 只获取响应头（不要响应体），常用于检查资源是否存在 |
+| GET | OPTIONS | 探试性请求，询问服务器支持哪些请求方法 |
+| POST | POST | 向服务器提交数据（新增资源） |
+| POST | PUT | 向服务器提交数据（更新/替换资源，整体更新） |
+| POST | PATCH | 向服务器提交数据（部分更新，只传变更字段） |
 
-**POST系列**
+> PUT 和 PATCH 的区别：PUT 需要传递完整的资源对象（替换整个），PATCH 只需传递要修改的字段（打补丁）。
 
-- POST
-- PUT 和DELETE是相对应的，告诉服务器要存储某些东西
+**GET 与 POST 对比表**
 
+| 对比维度 | GET | POST |
+| --- | --- | --- |
+| 参数位置 | URL 问号后面（QueryString） | 请求体（send 中） |
+| 参数大小 | 受 URL 长度限制（IE ~2KB，Chrome ~6-8KB） | 理论上无限制，实际受服务器配置限制 |
+| 安全性 | 参数暴露在 URL 中，可被历史记录、日志缓存 | 参数在请求体中，不会暴露在 URL |
+| 缓存 | 默认会被浏览器缓存 | 不会被缓存（除非手动设置） |
+| 回退/刷新 | 无害，浏览器会复用缓存 | 浏览器会提示"是否重新提交" |
+| 书签 | 可收藏（参数在 URL 中） | 不可收藏 |
+| 编码方式 | `application/x-www-form-urlencoded`（默认，URL 编码） | `application/x-www-form-urlencoded` 或 `multipart/form-data`（上传文件用） |
+| 语义 | 获取数据（不应改变服务器状态） | 提交数据（可能改变服务器状态） |
+| 幂等性 | 是（多次请求结果一致，不产生副作用） | 否（多次请求可能产生多条记录） |
 
+**代码示例**
 
-**GET和POST区别**
+```js
+// GET：参数拼在 URL 后面
+xhr.open("get", "/json/json?name=1&age=2", true)
+xhr.send()
 
-1. get传递给服务器的参数要比post少
+// POST：参数放在 send 中，需要设置 Content-Type
+xhr.open("post", "/json/json", true)
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+xhr.send("name=1&age=2")
 
-   因为浏览器对url的长度有限制（IE一般是2kb左右，谷歌浏览器的限制一般是6-7kb）
+// POST 发送 JSON 格式数据
+xhr.open("post", "/json/json", true)
+xhr.setRequestHeader("Content-Type", "application/json")
+xhr.send(JSON.stringify({ name: 1, age: 2 }))
+```
 
-   - get是在url后问号传参 `xhr.open("get","/json/json?name=1age=2",true)`
-   - post是在send()中进行传参，而且只有在send中的数据才叫请求体 `send({name:1,age:2})`
+**GET 缓存问题及解决**
 
-2. GET相对于POST来说不安全
+GET 请求会被浏览器缓存，如果不想走缓存，在 URL 后面拼接一个会变化的参数：
 
-   get是基于问号传参，有一种技术是URL劫持，这样别人就可以拿到你的参数或者篡改你的参数
+```js
+// 方式1：时间戳
+let flag = Date.now()
+fetch(`/api/data?name=9&_=${flag}`)
 
-   post是基于请求体传参，相对来说安全
-
-3. get请求会产生缓存，如果每一次请求地址一模一样，这样它就会走缓存
-
-   如果不想走缓存，只要保证每一次请求的地址都有不一样的地方（一般都是参数）
-
-   ```js
-   // 获取时间戳方法1
-   let flag = Date.now()
-   // 获取时间戳方法2
-   // let falg = (new Date).getTime()
-   `http://www.baidu.com:8080/index.html?name=9&age=2&flag=${flag}`
-   
-   // 利用随机数(0-1之间的随机小数)
-   let num = Math.random()
-   `http://www.baidu.com:8080/index.html?name=9&age=2&num=${num}`
-   ```
+// 方式2：随机数
+let num = Math.random()
+fetch(`/api/data?name=9&_=${num}`)
+```
 
 
 

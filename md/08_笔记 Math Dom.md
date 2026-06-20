@@ -104,8 +104,8 @@ console.log(str.length); // 62
         var res = "";
         // 生成验证码的数量
         while (res.length < 12) {
-            var index = Math.round(Math.random() * (str.length - 1));
-            // 生成不重复的验证码（不区分大小写）
+            var index = Math.floor(Math.random() * str.length);
+            // 生成不重复的验证码（indexOf 区分大小写，大小写字母可共存）
             if (res.indexOf(str[index]) == -1) {
                 res += str[index];
             }
@@ -196,9 +196,9 @@ document.nodeValue // null
 <script>
     var a1 = document.getElementById("a1");
     var a2=a1.getAttributeNode("href");  // 获取属性节点
-    a1.nodeName  // "href"
-    a1.nodeType  // 2
-    a1.nodeValue // "http://www.baidu.com"
+    a2.nodeName  // "href"
+    a2.nodeType  // 2
+    a2.nodeValue // "http://www.baidu.com"
 </script>
 ```
 
@@ -284,7 +284,7 @@ main.childNodes  // NodeList(7) [text, p, text, p, text, p, text]
 
 ### children
 
-- 获取当前元素所有的子元素（ie6-8不兼容）
+- 获取当前元素所有的子元素（IE6-8 也兼容）
 
 ```js
 main.children  // HTMLCollection(3) [p, p, p]
@@ -399,11 +399,11 @@ function PreviousElement(el) {
     }
     while (true) {
         el = el.previousSibling;
-        if (el.nodeType == 1) {
-            return el;
-        }
         if (el == null) {
             break;
+        }
+        if (el.nodeType == 1) {
+            return el;
         }
     }
 }

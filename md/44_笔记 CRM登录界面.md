@@ -8,8 +8,8 @@
 
 - CRM(Customer Relationship Management) 客户关系管理系统
 - OA(Office Automation) 企业办公管理系统（包括CRM）：企业微信、钉钉、飞书、如流
-- ERP(electronic public relationsystem)企业战略计划管理系统（一般比OA系统还打）
-- CMS(Content Management System)即使通讯系统
+- ERP(Enterprise Resource Planning)企业资源计划系统（一般比OA系统还大）
+- CMS(Content Management System)内容管理系统
 
 ### iframe
 

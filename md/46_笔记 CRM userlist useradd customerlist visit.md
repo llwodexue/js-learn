@@ -188,7 +188,7 @@ let userListModel = (function () {
             let flag = $(this).prop("checked");
             everyCheck.prop("checked", flag);
         });
-        $.click(function () {
+        everyCheck.click(function () {
             // 循环everyCheck。看看每一个小框的状态，如果有一个是false，那就把全选框给false，如果小框全是true，那就把全选框改为true
             let flag = true; // 当前flag代表全选框状态
             everyCheck.each((index, item) => {
@@ -285,7 +285,7 @@ let userAddModule = (function () {
         $userdesc = $(".userdesc"),
         $submit = $(".submit");
     let userId = null;
-    let isUpdate = true; // 默认是修改
+    let isUpdate = false; // 默认是新增
 
     // 发送部门列表和职务列表的接口
     function bindList() {
@@ -400,7 +400,7 @@ let userAddModule = (function () {
                 alert("请检查表单信息");
                 return;
             }
-            let url = isUpdate ? "/user/update" : "./user/add";
+            let url = isUpdate ? "/user/update" : "/user/add";
             let sex = $man.prop("checked") ? "1" : "0";
             let obj = {
                 name: $username.val().trim(),
@@ -439,7 +439,7 @@ let userAddModule = (function () {
             // 先进行接收当前url中userId的参数
             userId = location.href.queryURLParams().userId || "";
             if (userId) {
-                isUpdate = false;
+                isUpdate = true;
             }
             bindList()
                 .then(() => {
@@ -504,7 +504,7 @@ let customerListModule = (function () {
                         } = item;
                         str += `<tr data-id="${id}" data-name="${name}">
 					<td class="w8">${name}</td>
-					<td class="w5">${parseInt(sex) == 1 ? "女" : "男"}</td>
+					<td class="w5">${parseInt(sex) == 0 ? "女" : "男"}</td>
 					<td class="w10">${email}</td>
 					<td class="w10">${phone}</td>
 					<td class="w10">${weixin}</td>

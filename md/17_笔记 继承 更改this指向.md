@@ -272,7 +272,7 @@ Object.create = function (obj) {
     // 版本1
     var o = {};
     o.__proto__ = obj;
-    return obj;
+    return o;
     
     // 版本2
     function F() {}

@@ -29,7 +29,7 @@ function getCss(ele, attr) {
     } else {
         val = ele.currentStyle[attr];
     }
-    var reg = /^(width|height|padding|margin|fontSize|lineHeight|left|top|right|bottom|opacity|)$/;
+    var reg = /^(width|height|padding|margin|fontSize|lineHeight|left|top|right|bottom|opacity)$/;
     if (reg.test(attr)) {
         val = parseFloat(val);
     }
@@ -41,7 +41,7 @@ function getCss(ele, attr) {
 
 ```js
 function setCss(ele, attr, val) {
-    var reg = /^(width|height|padding|margin|fontSize|lineHeight|left|top|right|bottom|opacity|)$/;
+    var reg = /^(width|height|padding|margin|fontSize|lineHeight|left|top|right|bottom|opacity)$/;
     if (reg.test(attr)) {
         if (Number(val)) {
             val = val + "px";
@@ -60,7 +60,7 @@ for...in 循环可以遍历可枚举的属性
 ```js
 function setGroupCss(ele, obj) {
     for (var key in obj) {
-        if (!obj.hasOwnProperty(ele)) return;
+        if (!obj.hasOwnProperty(key)) continue;
         setCss(ele, key, obj[key]);
     }
 }
@@ -135,7 +135,7 @@ function css() {
 
 ### flex问题
 
-align-item：`stretch`（默认）如果**项目未设置高度或设为 auto**，将占满整个容器高度
+align-items：`stretch`（默认）如果**项目未设置高度或设为 auto**，将占满整个容器高度
 
 - 这里给 ul 不设置高度，让 ul 靠内容去撑起
 

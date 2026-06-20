@@ -59,8 +59,8 @@ RegExp.prototype.myExec = myExec;
 
 var str = "str123str456str";
 var reg = /\d{3}/g;
-console.log(reg.myExec(str)); // [ '123', '456', '789' ]
-console.log(str.match(reg));  // [ '123', '456', '789' ]
+console.log(reg.myExec(str)); // [ '123', '456' ]
+console.log(str.match(reg));  // [ '123', '456' ]
 ```
 
 ## 正则捕获 match
@@ -256,7 +256,7 @@ var reg = /\b([a-zA-Z])([a-zA-Z]*)\b/g;
 var res = str.replace(reg, (...arg) => {
     return arg[1].toUpperCase() + arg[2];
 });
-console.log(res); // Good Good Study，Day Day Up!
+console.log(res); // Good Good Study, Day Day Up!
 ```
 
 **queryUrlParams 方法封装**

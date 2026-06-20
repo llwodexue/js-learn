@@ -56,7 +56,7 @@ let server = http.createServer((req, res) => {
     let suffixReg = /\.([a-zA-Z0-9]+)$/;
     let suffix = suffixReg.exec(pathname) && suffixReg.exec(pathname)[1];
     // 客户端的请求：1.数据请求（数据服务器） 2.静态文件请求（web服务器）
-    let encoding = "charset=utf8";
+    let encoding = "charset=utf-8";
     // 如果当前客户端请求的资源是富媒体资源，那就不需要utf8格式转码
     /^(jpg|jpeg|png|gif|mp3|mp4)$/i.test(suffix) ? (encoding = "") : null;
     // 如果当前的suffix的值为null，说明这次发送的是数据请求
@@ -176,13 +176,13 @@ app.get("/list", (req, res) => {
 - res.send：最常用的给客户端返回信息（可以传递对象/path/buffer/txt等），基于send是通过响应主体返回给客户信息
 - res.json：返回给客户端内容，只不过传递的数据可以是JSON对象
 - res.type：返回content-type的类型值
-- res.set：设置响应头 `res.set("content-type": "text/html") <==> res.type = "text/html"`（可以传递一个对象）
+- res.set：设置响应头 `res.set("content-type", "text/html")` 和 `res.type("text/html")`（可以传递一个对象）
 - res.status：返回状态码
 
 ```js
 app.use((req, res, next) => {
 	// http://127.0.0.1:8888/add
-    // x-wwww-form-urlencoded name:1 age:2
+    // x-www-form-urlencoded name:1 age:2
     let data = ``;
     req.on("data", (result) => {
         data += result;

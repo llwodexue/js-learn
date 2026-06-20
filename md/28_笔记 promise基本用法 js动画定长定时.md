@@ -70,7 +70,7 @@ p.then(() => {
 });
 ```
 
-- 定时器第三个参数是回调函数的实参（最多只能传三个参数，如果回调函数需要传多个参数，可以传一个数组进行解构）
+- 定时器第三个及之后的参数是回调函数的实参（可以传多个参数，从第三个位置开始都是回调的实参）
 
 ```js
 setTimeout((meg) => {
@@ -273,13 +273,13 @@ function animate(ele, target, duration, callBack) {
     for (const key in target) {
         let eKey = window.getComputedStyle(ele)[key]
         eTarget[key] = parseFloat(eKey)
-        suffix[key] = eKey.match(/[^\d.-+]+/g))[0]
+        suffix[key] = eKey.match(/[^\d.-+]+/g)[0]
         cTarget[key] = target[key] - eTarget[key]
     }
-    let time = 0
+    let time = 0, rafId = null
     return function render() {
         time += 20
-        window.cancelAnimationFrame(render)
+        if (rafId) window.cancelAnimationFrame(rafId)
         if (time >= duration) {
             for (let key in target) {
                 ele.style[key] = target[key] + suffix[key]
@@ -292,7 +292,7 @@ function animate(ele, target, duration, callBack) {
         for (const key in target) {
             ele.style[key] = time / duration * cTarget[key] + eTarget[key] + suffix[key];
         }
-        window.requestAnimationFrame(render)
+        rafId = window.requestAnimationFrame(render)
     }
 }
 ```

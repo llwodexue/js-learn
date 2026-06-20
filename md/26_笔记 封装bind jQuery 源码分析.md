@@ -20,7 +20,7 @@ Function.prototype.myCall = function (context, ...arg) {
 ```
 
 - bind 执行会返回一个新的函数，以后执行这个新函数时，在新函数内部会让 fn 执行
-- bind 函数执行形成不销毁的作用域们可以保存里面的变量不受外界干扰，还可以让变量一直存在
+- bind 函数执行形成不销毁的作用域，可以保存里面的变量不受外界干扰，还可以让变量一直存在
 
 ```js
 Function.prototype.myBind = function (context, ...arg1) {

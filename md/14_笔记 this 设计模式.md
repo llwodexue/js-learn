@@ -257,7 +257,7 @@ utils.fn()
 
 ### 工厂设计模式（函数封装）
 
-把实现相同功能的代码进行封装，后期在使用的时候，只用调用这个函数即可，方便后期的“批量生产”。减少了页面中冗余的代码，实现了“高耦合低内聚”
+把实现相同功能的代码进行封装，后期在使用的时候，只用调用这个函数即可，方便后期的“批量生产”。减少了页面中冗余的代码，实现了”高内聚低耦合”
 
 ```js
 function person(name, age) {
@@ -279,7 +279,7 @@ var p = person("lion", 13)
 
 构造函数（类）
 
-- 内置类：Number、String、Boolean、Symbol、Null、Undefined、Object、Function、Array、RegExp、Math、Date
+- 内置类：Number、String、Boolean、Symbol、Object、Function、Array、RegExp、Math、Date
 - 自定义类：
 
 ```js

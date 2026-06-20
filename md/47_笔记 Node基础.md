@@ -6,21 +6,19 @@
 
 - jQuery 普通元素的值的获取：html()
 
-  原生方法：innerHTML()
+  - 属性：innerHTML
 
 - jQuery 表单元素的值的获取：val()
 
-  原生方法：value()
-
-
+  - 属性：value
 
 - jQuery 获取设置属性的方法：prop(key)，prop(key, val)
 
-  原生方法：getAttribute(key)，setAttribute(key, val)
+  - 原生方法：getAttribute(key)，setAttribute(key, val)
 
 ## Node
 
-- 基于v8引擎（webkit内核）解析和渲染js（node不是语言，而是一个解析js的工具或者环境）
+- 基于V8引擎（Chrome的开源JS引擎）解析和渲染js（node不是语言，而是一个解析js的工具或者环境）
 - npm（node package manager）
 - yarn
 
@@ -85,6 +83,6 @@ let sum = (...arg) => {
 
 let avg = (...arg) => {
     arg = arg.sort((a, b) => a - b).slice(1, arg.length - 1);
-    return a.sum(...arg) / arg.length;
+    return sum(...arg) / arg.length;
 };
 ```

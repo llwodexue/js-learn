@@ -27,7 +27,7 @@ $.ajax({
     complete: null, // 不管当前是请求失败还是请求成功，只要请求完成，它都执行
     timeout: null, // 设置当前请求超时的时间
     headers: null, // 设置当前的请求头信息，传递的参数是对象类型，请求头中的属性不能是汉字，如果想传递汉字，那就给汉字进行转码
-    contentType: null, // 设置传递给服务器内容的格式类型，默认是 "application/x-www-form-urlencode"
+    contentType: null, // 设置传递给服务器内容的格式类型，默认是 "application/x-www-form-urlencoded"
     // 客户端传递给服务器的格式（类型一般都是字符串）"{"name":"xxx","age":1}"
     // x-www-form-urlencode: name=xxx&age=1
 });
@@ -58,7 +58,6 @@ console.log(res2); // { name: 'bird', age: 13, time: '3' }
 ```js
 (function () {
     function ajax(options) {
-        console.log(new init(options));
         return new init(options);
     }
     // 默认的参数配置
@@ -117,7 +116,7 @@ console.log(res2); // { name: 'bird', age: 13, time: '3' }
             // 5.设置请求头，headers是一个对象
             if (headers) {
                 for (const key in headers) {
-                    if (!headers.hasOwnProperty(key)) break
+                    if (!headers.hasOwnProperty(key)) continue
                     xhr.setRequestHeader(key, encodeURI(headers[key]))
                 }
             }
@@ -191,7 +190,7 @@ console.log(res2); // { name: 'bird', age: 13, time: '3' }
             ...options
         };
         if (!this.options.url) {
-            throw new Error("url is must be supported")
+            throw new Error("url is required")
         }
         this.send();
     }
@@ -258,7 +257,7 @@ ajax({
             }
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
-                    if (/^(2|3)\d{2}$/.test(status)) {
+                    if (/^(2|3)\d{2}$/.test(xhr.status)) {
                         let res = "";
                         switch (self.dataType.toUpperCase()) {
                             case "JSON":
@@ -280,7 +279,7 @@ ajax({
             xhr.send(this.data);
         },
         handleData: function () {
-            if (this.data === null && typeof this.data === "string") return;
+            if (this.data === null || typeof this.data === "string") return;
             let str = "";
             for (const key in this.data) {
                 if (Object.hasOwnProperty.call(this.data, key)) {
@@ -294,7 +293,7 @@ ajax({
             if (reg.test(this.method)) {
                 this.url += `${this.handleQ()}${this.data}`;
                 this.data = null;
-                if (!this.cache) this.url = `${this.url}_num=${Date.now()}`;
+                if (!this.cache) this.url += `${this.handleQ()}_num=${Date.now()}`;
             }
         },
         handleQ: function () {

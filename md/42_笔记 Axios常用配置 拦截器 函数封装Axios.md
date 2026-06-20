@@ -35,7 +35,7 @@ instance2.post("1.txt", {
 - headers：配置当前的请求头
 - params：get系列请求发送的参数
 - data：post系列请求发送的参数
-- withCredentials：跨域请求时是否需要使用凭证（默认是fasle）
+- withCredentials：跨域请求时是否需要使用凭证（默认是false）
 - responseType：服务器响应的数据类型（默认是json）
 - validateStatus：对于给定的HTTP响应状态码。`status >= 200 && status < 300;`（默认）
 
@@ -85,7 +85,7 @@ axios.defaults.headers = {
 axios.defaults.transformRequest = function (data, header) {
     let str = "";
     for (let key in data) {
-        str += `${key}${data[key]}&`;
+        str += `${key}=${data[key]}&`;
     }
     str = str.slice(0, str.length - 1);
     return str;

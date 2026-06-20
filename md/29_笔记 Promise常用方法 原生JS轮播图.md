@@ -450,7 +450,7 @@ function debounce(fn, wait) {
     return function (...args) {
         if (timers) clearTimeout(timers);
         timers = setTimeout(() => {
-            result = fn.apply(this, ...args);
+            result = fn.apply(this, args);
         }, wait)
         return result;
     }

@@ -30,7 +30,7 @@ Math.max.apply(null, arr);
 
 ```js
 var arr = [2, 5, 14, 7, 3];
-// 直接比价取最大值
+// 直接比较取最大值
 var max = arr[0];
 for (var i = 1; i < arr.length; i++) {
     if (max < arr[i]) {
@@ -84,7 +84,7 @@ fn(1, 3, 5);
 
 - `arr.slice(start, end)` ：提取索引 start 复制到索引 end 的部分（不包括 end）
 
-  `Array.prototype.slice.call(arguments, 0)`，就是把 `arguments` 当做
+  `Array.prototype.slice.call(arguments, 0)`，就是把 `arguments` 当做数组来截取
 
 3. Array.from()
 
@@ -166,9 +166,9 @@ console.log(res);
 </script>
 ```
 
-- Dom 映射：页面中的元素通过 Dom 方法来获取回来的元素，这个集合仍然和页面中的元素存在这种一一对应的关系
+- DOM 映射：页面中的元素通过 DOM 方法来获取回来的元素，这个集合仍然和页面中的元素存在这种一一对应的关系
 
-- Dom 回流：页面中元素的改变或增加或删除（元素的位置、大小、结构、定位发送改变），都会引起浏览器对当前页面结构进行重新计算，比重绘耗费性能
+- DOM 回流：页面中元素的改变或增加或删除（元素的位置、大小、结构、定位发生改变），都会引起浏览器对当前页面结构进行重新计算，比重绘耗费性能
 
   appendChild 在追加元素对象的时候，如果这个元素在容器中已经存在，此时**并不是克隆一份新的追加到末尾，而是把原有的元素移动到末尾**
 
@@ -424,7 +424,7 @@ var fn = (x) => ({ name: "lion" });
 
 ```js
 let A = (x) => x;
-let f = new B(); // TypeError: B is not a constructor
+let f = new A(); // TypeError: A is not a constructor
 ```
 
 - 类的继承

@@ -4,7 +4,7 @@
 
 ## js 页面加载
 
-节选至：[JavaScript高级程序设计（第3版）](https://www.ituring.com.cn/book/946) 第2章第12页
+节选自：[JavaScript高级程序设计（第3版）](https://www.ituring.com.cn/book/946) 第2章第12页
 
 > 带有 src 属性的 `<script>` 元素不应该在其  `<script>` 和  `</script>` 标签之间再包含额外的JavaScript代码
 
@@ -139,9 +139,10 @@ var obj = {
 };
 console.log(obj.b);
 // TypeError: Cannot read property 'n' of undefined
+// 原因：对象字面量在 } 结束前 obj 还未创建完成，此时 obj 是 undefined
 ```
 
-![引用数据类型存储存储在堆内存中可能出现的问题](https://gitee.com/lilyn/pic/raw/master/js-img/%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E5%AD%98%E5%82%A8%E5%9C%A8%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98.jpg)
+![引用数据类型存储在堆内存中可能出现的问题](https://gitee.com/lilyn/pic/raw/master/js-img/%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%E5%9C%A8%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98.jpg)
 
 ## 判断语句
 

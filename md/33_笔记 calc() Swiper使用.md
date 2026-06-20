@@ -106,7 +106,7 @@ pagination: {
 
 ```css
 .swiper-container .swiper-button-prev,
-.swiper-container .swiper-button-next,{
+.swiper-container .swiper-button-next {
     background-color: rgba(0, 0, 0, 0.6);
     width: 40px;
     height: 58px;

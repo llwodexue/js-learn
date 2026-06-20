@@ -182,7 +182,7 @@ a{
     // 3.启动定时器，完成轮播
     let autoMove = () => {
         step++;
-        if (step == 5) {
+        if (step == data.length) {
             step = 0;
         }
         changeFocus();
@@ -208,7 +208,7 @@ a{
     })
 
     // 6.划上li，显示对应的图片
-    $("#list li").hover(function () {
+    $("#list li").mouseenter(function () {
         let index = $(this).index();
         step = index - 1;
         autoMove();
@@ -342,9 +342,9 @@ box.addEventListener("click", fn1);
 load 和 DOMContentLoaded区别：
 
 ```js
-// 等到当前页面的DOM加载完成之后才会执行
-window.addEventListener("load", () => console.log(4));
 // 等到页面中所有资源全部加载完成之后才执行
+window.addEventListener("load", () => console.log(4));
+// 等到当前页面的DOM加载完成之后才会执行
 window.addEventListener("DOMContentLoaded", () => console.log(3));
 // 3 4
 ```

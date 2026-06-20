@@ -64,7 +64,7 @@ function countArr(str) {
                 // 2.如果当前是get系列请求并且params不是null，那就把params拼接到url后面
                 let reg = /^(GET|HEAD|DELETE|OPTIONS)$/i;
                 if (reg.test(method) && params) {
-                    url += `${this.addMark(url)}${params}}`;
+                    url += `${this.addMark(url)}${params}`;
                 }
                 // 3.如果当前是post系列请求，就执行transformRequest
                 if (!reg.test(method)) {
@@ -130,7 +130,7 @@ function countArr(str) {
         data: null,
         params: null,
         headers: {
-            "Content-type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/x-www-form-urlencoded",
         },
         timeout: null,
         transformRequest: function (data) {
@@ -244,7 +244,7 @@ localStorage.setItem("obj", JSON.stringify({ name: 1 }));
 
 localStorage.getItem("obj"); // 获取数据
 localStorage.removeItem("obj"); // 删除数据
-localStorage.clear(); // 清楚全部
+localStorage.clear(); // 清除全部
 ```
 
 ### sessionStorage
@@ -303,7 +303,7 @@ document.cookie = `key=value;expires=${new Date().getTime() + 60 * 1000 * 15}`
 
 当用户注册的时候，把用户的密码进行MD5加密，把加密的结果存储到数据库中，以后用户登录的时候，把当前用户输入的加密的密码和之前服务器上存户的密码进行匹配，如果匹配一致，那说明注册和登录的时候输入的密码是一致的
 
-- cookie等敏感信息会被隐藏显示为”Provisional headers are shown”。解决方法：访问[chrome://flags/#site-isolation-trial-opt-out](chrome://flags/#site-isolation-trial-opt-out)，改为Diable
+- cookie等敏感信息会被隐藏显示为”Provisional headers are shown”。解决方法：访问[chrome://flags/#site-isolation-trial-opt-out](chrome://flags/#site-isolation-trial-opt-out)，改为Disable
 
 
 

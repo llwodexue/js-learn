@@ -103,12 +103,12 @@
             children: [
                 {
                     subTitle: "我的客户",
-                    href: "page/customerlist.html?lx=my.html",
+                    href: "page/customerlist.html?lx=my",
                     flag: "",
                 },
                 {
                     subTitle: "全部客户",
-                    href: "page/customerlist.html?lx=all.html",
+                    href: "page/customerlist.html?lx=all",
                     flag: "allcustomer",
                 },
                 {
@@ -218,8 +218,8 @@
 
 ```js
 document.body.addEventListener('touchmove', function(e){
-        e.preventDefault();
-    }, { passive: false });  //passive 参数不能省略，用来兼容ios和android
+    e.preventDefault();
+}, { passive: false });  //passive 参数不能省略，用来兼容ios和android
 ```
 
 

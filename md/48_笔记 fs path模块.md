@@ -202,7 +202,7 @@ function handleSuffix(pathname) {
         return new Promise((resolve, reject) => {
             pathname = path.resolve(pathname);
             let resSuffix = handleSuffix(pathname);
-            function callBack(err, res) {
+            function callback(err, res) {
                 if (err !== null) {
                     reject(err);
                     return;
@@ -210,10 +210,10 @@ function handleSuffix(pathname) {
                 resolve(res);
             }
             if (item !== "readFile") {
-                resSuffix = callBack;
-                callBack = null;
+                resSuffix = callback;
+                callback = null;
             }
-            fs[item](pathname, resSuffix, callBack);
+            fs[item](pathname, resSuffix, callback);
         });
     };
 });
@@ -223,7 +223,7 @@ function handleSuffix(pathname) {
         return new Promise((resolve, reject) => {
             pathname = path.resolve(pathname);
             let resSuffix = handleSuffix(pathname);
-            function callBack(err, res) {
+            function callback(err, res) {
                 if (err !== null) {
                     reject(err);
                     return;
@@ -233,7 +233,7 @@ function handleSuffix(pathname) {
             content && typeof content == "object"
                 ? (content = JSON.stringify(content))
                 : (content += "");
-            fs[item](pathname, content, resSuffix, callBack);
+            fs[item](pathname, content, resSuffix, callback);
         });
     };
 });
@@ -242,14 +242,14 @@ obj["copyFile"] = function (pathname1, pathname2) {
     return new Promise((resolve, reject) => {
         pathname1 = path.resolve(pathname1);
         pathname2 = path.resolve(pathname2);
-        function callBack(err, res) {
+        function callback(err, res) {
             if (err !== null) {
                 reject(err);
                 return;
             }
             resolve(res);
         }
-        fs["copyFile"](pathname1, pathname2, callBack);
+        fs["copyFile"](pathname1, pathname2, callback);
     });
 };
 

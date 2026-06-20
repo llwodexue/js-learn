@@ -232,7 +232,7 @@
 
 > 用`@import` 导入外部文件，但不会添加。把导入的文件编译到最终输出中
 
-```js
+```less
 @import "./import/module1.less";
 @import "./import/module2.less";
 ```
