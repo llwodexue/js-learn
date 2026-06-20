@@ -1,4 +1,4 @@
-## JS 中的异步任务
+﻿## JS 中的异步任务
 
 JS 是单线程的：大部分代码都是同步的，但是也有少部分代码是异步编程的
 
@@ -112,7 +112,7 @@ p.then(onfulfilledCallback, onrejectedCallback)
   - 如果实例状态是 pending，则不做任何处理
   - 如果已经变为 fulfilled/rejected，则会通知对应的回调函数执行（但是不是立即执行，而是把放置 EventQueue 中的微任务队列中）
 
-  promise 本身不是异步的，是用来管理异步的，但是 then 方法时异步的（微任务）
+  promise 本身不是异步的，是用来管理异步的，但是 then 方法是异步的（微任务）
 
 ```js
 let p = new Promise((resolve, reject) => {
@@ -146,7 +146,7 @@ console.log(3)
 // success
 ```
 
-> 控制台不展开始当时执行的时候输出的值，展开式后期修改的最新值
+> 控制台不展开时显示的是当时输出的值，展开后显示的是后期修改的最新值
 
 执行 then 方法会返回一个全新的 promise 实例
 
@@ -444,7 +444,7 @@ function fn() {
 ```
 
 - awit 是异步微任务
-- 函数体重遇到 await，后面代码该怎么执行就怎么执行，但 await 下面的代码会暂停执行（把它们当做一个任务，放置在 EventQueue 的微任务队列中）
+- 函数体中遇到 await，后面代码该怎么执行就怎么执行，但 await 下面的代码会暂停执行（把它们当做一个任务，放置在 EventQueue 的微任务队列中）
 
 ```js
 function api(interval) {
@@ -645,7 +645,7 @@ setTimeout(() => {
 "p3"
 "p4"
 "interval"
-每到时间救输出interval
+每到时间就输出interval
 */
 ```
 
@@ -790,7 +790,7 @@ func1 start
       self.state = state
       self.result = result
       // 通知基于then存储的方法执行
-      if (self.onFulfilledCallbacks.length === 0 && self.onRejectedCallbacks === 0) return
+      if (self.onFulfilledCallbacks.length === 0 && self.onRejectedCallbacks.length === 0) return
       setTimeout(function () {
         var i = 0,
           callbacks = self.state === 'fulfilled' ? self.onFulfilledCallbacks : self.onRejectedCallbacks,
@@ -935,12 +935,12 @@ func1 start
       for (; i < len; i++) {
         // then是异步，循环早已结束
         ;(function (i) {
-          item = promises[i]
+          var item = promises[i]
           if (!isPromise(item)) item = Promise.resolve(item)
-          item.then(function (result) {
+          item.then(function (value) {
             index++
-            result[i] = result
-            if (index >= len) resolve()
+            result[i] = value
+            if (index >= len) resolve(result)
           }, reject)
         })(i)
       }
