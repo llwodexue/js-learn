@@ -16,7 +16,7 @@ getData(page);
 // 渲染数据
 function renderHtml(data) {
     for (let i = 0; i < 20; i++) {
-        // 随机产0-9之间的整数
+        // 随机产生0-9之间的整数
         let index = Math.round(Math.random() * 9);
         // 从data中随机获取一组图片
         let curImg = data[index];
@@ -59,7 +59,7 @@ function delayImg(img) {
 }
 delay();
 function isLoad() {
-    // 当浏览器滚动条卷曲的高度+浏览器可视区的高度>=body真实高度，说明滚动条到底了
+    // 当浏览器滚动条卷去的高度+浏览器可视区的高度>=body真实高度，说明滚动条到底了
     let winH = utils.win("clientHeight");
     let winT = utils.win("scrollTop");
     let bodyH = utils.win("scrollHeight");

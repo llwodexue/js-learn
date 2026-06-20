@@ -36,7 +36,7 @@
       console.log(res);
       // res中有一个ok属性，他代表了当前请求的状态，如果是成功的请求，那他的值就是true，如果是失败的请求，按他的值就是false
 
-      return res.json(); // 返回值是一个promsie实例，当把返回的文件读取完成，当前的promise是开的状态就会变成成功态，还会把读取的内容传递给resolve的实参
+      return res.json(); // 返回值是一个promsie实例，当把返回的文件读取完成，当前 promise 的状态就会变成成功态，还会把读取的内容传递给resolve的实参
     }).then((res)=>{
       console.log(res);
     });

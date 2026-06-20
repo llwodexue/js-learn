@@ -11,5 +11,5 @@ a.constructor; // 3
 Object.prototype.toString.call(null); // "[object Null]"
 var obj = {};
 obj.toString.call(null);
-global.toString.call(null)
+window.toString.call(null)
 console.log(toString.call(null))

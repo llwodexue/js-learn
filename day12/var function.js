@@ -46,7 +46,7 @@ console.log(a, b);
 var a = 12,
     b = 12;
 function fn() {
-    // 变量提升 var a；a 是私有的， b是 windows 全局作用域
+    // 变量提升 var a；a 是私有的，b 是 window 全局作用域
     console.log(a, b);
     // 下面语句相当于 b=13; var a=b
     var a = b = 13;

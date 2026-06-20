@@ -23,7 +23,7 @@
 
     4.npm的基础 知识在过一下
     
-    // package.json中的scripes的用处
+    // package.json中的scripts的用处
       + 在package.json中，可以基于scripts选项配置本地可执行的脚本命令 $npm run xxx
     ```
     "scripts": {
@@ -34,9 +34,9 @@
     	+ 在配置可执行脚本命令的时候，基于process的环境变量区分开发还是生产环境
 		```
 		"scripts": {
-			//=>set NODE_EVN=dev 设置全局环境变量（MAC下用 export NODE_EVN=dev）
-    		"serve": "set NODE_EVN=dev&&node index.js",
-   			"build": "set NODE_EVN=pro&&node index.js"
+			//=>set NODE_ENV=dev 设置全局环境变量（MAC下用 export NODE_ENV=dev）
+    		"serve": "set NODE_ENV=dev&&node index.js",
+   			"build": "set NODE_ENV=pro&&node index.js"
   		}
 
 

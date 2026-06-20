@@ -39,7 +39,7 @@ function autoMove(index) {
     }, 1000)
     changeFocus();
 }
-// 4.鼠标划上图片停止轮播 鼠标离开继续轮播
+// 4.鼠标滑上图片停止轮播 鼠标离开继续轮播
 $("#outer").hover(() => {
     clearInterval(timer);
 }, () => {

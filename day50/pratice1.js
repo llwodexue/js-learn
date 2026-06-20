@@ -52,7 +52,7 @@ app.post("/add", (req, res) => {
 app.use((req, res, next) => {
     res.status(404);
     // res.type('application/json')
-    res.send("not fount");
+    res.send("not found");
 });
 app.listen(8888, () => {
     console.log("8888 -->success");

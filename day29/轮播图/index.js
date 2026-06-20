@@ -51,7 +51,7 @@ function autoMove(index) {
 }
 timer = setInterval(autoMove, 2000);
 
-// 4.鼠标划上图片停止轮播 鼠标离开继续轮播
+// 4.鼠标滑上图片停止轮播 鼠标离开继续轮播
 outer.onmouseover = function () {
     clearInterval(timer);
 }

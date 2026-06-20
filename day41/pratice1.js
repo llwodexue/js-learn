@@ -174,8 +174,8 @@
         })
     };
     Promise.all = function all(promises) {
-        // 对象，类数组arguments不不能迭代
-        // 具有[Symbol.iterator]，可被迭代。数组、set、map、节点结合
+        // 对象、类数组 arguments 不能迭代
+        // 具有[Symbol.iterator]，可被迭代。数组、Set、Map、节点集合
         var legal = true;
         typeof Symbol !== "undefined" ? (typeof promises[Symbol.iterator] !== "function" ? legal = false : null) : (!isArray(promises) ? legal = false : null);
         if (legal === false) throw new TypeError(promises + "is not iterable");

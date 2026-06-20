@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 		CREDENTIALS,
 		HEADERS,
 		ALLOW_METHODS
-	} = CONFIG.CROS;
+	} = CONFIG.CORS;
 	res.header("Access-Control-Allow-Origin", ALLOW_ORIGIN);
 	res.header("Access-Control-Allow-Credentials", CREDENTIALS);
 	res.header("Access-Control-Allow-Headers", HEADERS);

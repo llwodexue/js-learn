@@ -12,7 +12,7 @@ let obj2 = {
         b: 200
     }
 }
-// Obj2覆盖obj1 只实现浅比较（浅合并）：只对第一级合并
+// obj2覆盖obj1 只实现浅合并（浅拷贝）：只对第一级合并
 let obj = Object.assign(obj1, obj2);
 console.log(obj);
 console.log(obj1);

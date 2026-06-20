@@ -1,4 +1,4 @@
-// 函数防抖（dobounce）
+// 函数防抖（debounce）
 function debounce(func, wait) {
     var timeout;
     return function () {

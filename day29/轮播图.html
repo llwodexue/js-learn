@@ -140,7 +140,7 @@
     <script type="text/javascript">
         var index = 1; //这是记录图片的索引，通过索引来控制图片的切换，
         // 注意是从1开始的   [1,size-2]
-        var timer = null; //seInterval()函数会返回一个值，这是用来接收那个值的，可以用来停止轮播的效果
+        var timer = null; //setInterval()函数会返回一个值，这是用来接收那个值的，可以用来停止轮播的效果
         var size = $('.slide').children().size(); //图片的张数
         var picWidth = $('.pic').width(); //获取图片的宽度
         //鼠标移上去的时候图片轮播要暂停
@@ -179,7 +179,7 @@
                 $('.slide').animate({
                     'left': -picWidth + 'px'
                 }, 0); // 图片切换过去
-                index = 1; //索引要也切换为第一幅图的索引
+                index = 1; //索引也要切换为第一幅图的索引
             }
             if (index < 1) {
                 //要注意在执行下面这段函数之前，已经切换到图片C了。

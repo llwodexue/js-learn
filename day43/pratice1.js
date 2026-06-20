@@ -24,7 +24,7 @@ console.dir(axios);
                 },
             } = this;
             return new Promise((resolve, reject) => {
-                // 发送ajax请求，当请求车成功以后把当前的promise的实例改为成功态，请求失败以后把当前promise的实例改为失败态
+                // 发送ajax请求，当请求成功以后把当前的promise的实例改为成功态，请求失败以后把当前promise的实例改为失败态
                 let self = this;
                 let xhr = new XMLHttpRequest();
                 // 0.把baseURL和url拼接到一起
@@ -77,7 +77,7 @@ console.dir(axios);
             }).then(transformResponse);
         }
         tranParams() {
-            // 房钱函数的返回结果就是处理之后的参数
+            // 当前函数的返回结果就是处理之后的参数
             let {
                 options: { params },
             } = this;

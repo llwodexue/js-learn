@@ -1,6 +1,6 @@
 /*
 构造函数（类）
-内置类：sNumber String Boolean Symbol Null Undefined Object Function Array RegExp Math Date
+内置类：Number String Boolean Object Function Array RegExp Math Date
 自定义类：
 */
 function Fn() {

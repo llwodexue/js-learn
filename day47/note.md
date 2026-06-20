@@ -18,10 +18,10 @@
     - HTML5/CSS3(字体图标)
     - JQUERY
     - AXIOS
-    - 辅助行的插件 JQUERY.COOKIE  MD5  / 自己写的一些方法
-    - 基于IFRAME侯建一个最初始版本的SPA单页面应用
+    - 辅助性的插件 JQUERY.COOKIE  MD5  / 自己写的一些方法
+    - 基于IFRAME构建一个最初始版本的SPA单页面应用
 
-  服务器使用的到技术栈
+  服务器使用到的技术栈
     - NODE
     - EXPRESS 、EXPRESS-ROUTER
     - SESSION
@@ -40,4 +40,4 @@
         - 数据库存储 MYSQL  MONGODB ORACLE
         - REDIS
         - SESSION
-        MYSQL SQLSERVER  MONGGODB oracle
+        MYSQL SQLSERVER  MONGODB ORACLE

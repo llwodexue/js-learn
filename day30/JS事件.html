@@ -24,9 +24,9 @@
     box.addEventListener("click", fn1);
     box.addEventListener("click", fn2);
     box.addEventListener("click", fn1);
-    // 等到当前页面的DOM加载完成之后才会执行
+    // 等到页面中所有资源全部加载完成之后才执行（CSS、图片等）
     window.addEventListener("load", () => console.log(4))
-    // 等到页面中所有资源全部加载完成之后才执行
+    // 等到当前页面的DOM加载完成之后才会执行
     window.addEventListener("DOMContentLoaded", () => console.log(3)) */
 
 </script>

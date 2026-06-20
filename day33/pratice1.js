@@ -2,7 +2,7 @@ class Fn {
     constructor(x) {
         this.x = x;
     }
-    // ES7:this.y=200 设置的是私有的属性
+    // ES2022:this.y=200 设置的是私有的属性（类字段语法）
     y = 200;
     // Fn.prototype 设置的是公有方法
     getX() {} // 没有prototype

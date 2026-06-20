@@ -6,7 +6,7 @@ var xhr = new XMLHttpRequest();
 xhr.open("get", "data.json");
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && /^2\d{2}/.test(xhr.status)) {
-        data = xhr.responseText;
+        data = JSON.parse(xhr.responseText);
         Init(data);
     }
 };
@@ -25,7 +25,7 @@ function Init(data) {
         </p>
     </li>`;
     }
-    links.innerHTML = str;
+    lists.innerHTML = str;
     lis = [].slice.call(lists.querySelectorAll("li"));
 }
 for (let i = 0; i < links.length; i++) {

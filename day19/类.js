@@ -9,7 +9,7 @@ A.a = 30;
 var b = new A();
 b.getA();
 
-// 这个{}既不是对象也不是作用域
+// class 的 {} 内部是一个特殊的作用域（class body scope），里面的代码默认在严格模式下执行
 class A {
     constructor(name) {
         this.x = 10;

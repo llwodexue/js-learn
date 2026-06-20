@@ -42,11 +42,11 @@ console.log(num, obj.num);
 /*
 var fn = obj.fn
     形参赋值：[私有]num=20
-    [window]]num=20*3=60
+    [window]num=20*3=60
     [私有]num++=21
 fn(5)
     形参赋值：[私有]n=5
-    [window]num=60+6=65
+    [window]num=60+5=65
     [私有]num++=22
 obj.fn(10)
     形参赋值：[私有]n=10

@@ -54,7 +54,7 @@ module.exports = {
                         // loader: "file-loader",
                         loader: "url-loader", // 把图片转换成base64编码，但是转换时有大小限制，如果当前的图片小于2kb就会被base64编码，相反，如果大于2kb那就还是file-loader进行解析
                         options: {
-                            limit: 70 * 1024, // 左图片转码的大小限制，默认单位是b
+                            limit: 70 * 1024, // 图片转码的大小限制，默认单位是b
                             outputPath: "./images",
                             name: "[name].[hash].[ext]", // 指定生成图片的名字
                             esModule: false, // 在js中可以正常引入路径

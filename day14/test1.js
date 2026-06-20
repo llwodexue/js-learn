@@ -147,7 +147,7 @@ console.log(a);
 1.变量提升：foo
 2.自上而下执行：(function(foo){})(foo)
     1.形参赋值foo="hello"
-    2.变量提升 foo，foo不会重复声明，值还是"hello""
+    2.变量提升 foo，foo不会重复声明，值还是"hello"
     3."hello" || "world"->"hello"
 3.自执行函数是块级作用域不会影响外面的 foo
 */

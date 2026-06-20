@@ -10,7 +10,7 @@ function instance_of(target, ctor) {
     if (typeof ctor[Symbol.hasInstance] === "function") {
         return ctor[Symbol.hasInstance](target);
     }
-    // 没有这个属性，再按照 ctor.prototype 是否出现在 example 的原型链上检测
+    // 没有这个属性，再按照 ctor.prototype 是否出现在 target 的原型链上检测
     let prototype = Object.getPrototypeOf(target);
     while (prototype) {
         if (prototype == ctor.prototype) return true;

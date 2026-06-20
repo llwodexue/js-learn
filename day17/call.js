@@ -4,7 +4,7 @@ Function.prototype.myCall = function (obj, ...arg) {
     var res = null;
     // this 就是 fn
     obj.$fn = this;
-    // ..arg 展开运算符
+    // ...arg 展开运算符
     res = obj.$fn(...arg);
     delete $fn;
     return res;

@@ -1,5 +1,5 @@
 Array.prototype.mySort = function (callBack) {
-    // 这里只对第一个数进行 ASCII 转换，如果第一个数相同则不做处理
+    // 对字符逐个进行 ASCII 码比较，首字符相同时逐位往后比较
     function ASCII(arr) {
         for (let i = 0; i < arr.length - 1; i++) {
             for (let j = 0; j < arr.length - 1 - i; j++) {

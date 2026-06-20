@@ -13,7 +13,7 @@ var totalMoneyEle = document.querySelector(".shopInfo .totalMoney");
 var specialPrice = document.querySelector(".shopInfo .specialPrice");
 var lis = document.querySelectorAll(".shop li");
 for (var i = 0; i < btn.length; i++) {
-    // 给按钮帮点点击事件
+    // 给按钮绑定点击事件
     btn[i].onclick = function () {
         // 获取当前button的flag属性，用于判定是加法还是减法
         var flag = this.getAttribute("flag");

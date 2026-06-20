@@ -1,5 +1,5 @@
 // 每个函数都有一个属性 prototype
-// 每个 prototype 对象都有一个 constructor 属性，指向所属类的原型
+// 每个 prototype 对象都有一个 constructor 属性，指向所属的构造函数（类）
 // 每个对象都有一个 __proto__ 指向所属类的原型
 
 // 回调函数内部 this 一般指向 window，但这个是可以修改的
@@ -113,5 +113,5 @@ Array.prototype.myUnshift = function () {
     return this.length;
 };
 var arr = [1, 2, 3, 4];
-console.log(arr.myUnshift(1, 2)); // undefined
+console.log(arr.myUnshift(1, 2)); // 6，myUnshift 返回的是 this.length
 console.log(arr);

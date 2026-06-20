@@ -7,13 +7,13 @@ var arr = [8, 2, 1, 5];
     第二轮：
         [1,2,5,8] 经过第二轮比较，找到第二个最大数 5
     第三轮：
-        [1,2,5,8] 经过第三轮比较，找到第二个最大数 2
+        [1,2,5,8] 经过第三轮比较，找到第三个最大数 2
     第四轮不用比较，总共四个数，已经得到三个最大数，最后一个是最小的
     轮数规律： arr.length-1
 
     第一次：arr.length-1
     第二次：arr.length-1-1
-    第三次：arr-length-1-2
+    第三次：arr.length-1-2
     两两比较规律：arr.length-1-轮数
 */
 var arr = [8, 2, 1, 5, 6, 7, 8, 9, 0, 32, 47, 8, 2];
@@ -40,7 +40,7 @@ console.log(BubbleSort(arr));
 
 var arr = [8, 2, 1, 5, 6, 7, 8, 9, 0, 32, 47, 8, 2];
 function unique(arr) {
-    console.time("改进后冒泡排序耗时");
+    console.time("选择排序耗时");
     for (var i = 0; i < arr.length - 1; i++) {
         for (var j = i + 1; j < arr.length; j++) {
             if (arr[i] > arr[j]) {

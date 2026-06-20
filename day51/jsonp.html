@@ -11,7 +11,7 @@
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <!-- <script>
         // 在客户端，有一些请求（ajax, fetch）是同源策略，就是只能在同域才能请求
-        // 在客户端，有一些请求是非同源策略，就是可以在不同域发送请，浏览器本身可以往任何地址发送请、link、script、img、audio、video... 都可以往任何地址发送请求（不受源的限制）
+        // 在客户端，有一些请求是非同源策略，就是可以在不同域发送请，浏览器本身可以往任何地址发送请求、link、script、img、audio、video... 都可以往任何地址发送请求（不受源的限制）
         $.ajax({
             url: "http://127.0.0.1:8888/list",
             success: res => {
@@ -22,7 +22,7 @@
     </script> -->
     <!-- <script>
         // script虽然是非同源策略，能够随意发送请求，但是js中拿不到当前请求的结果
-        // 一般请求下利用script发送跨域请求必须要后台的配合
+        // 一般情况下利用script发送跨域请求必须要后台的配合
         function fn(res) {
             console.log(res);
         }

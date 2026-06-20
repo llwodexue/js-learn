@@ -7,7 +7,7 @@
 // // let maxS = scrollHeight - clientHeight;
 // console.log(winT, winL);
 
-// 封装一个方法撞门用来设置或获取浏览器的某些属性
+// 封装一个方法专门用来设置或获取浏览器的某些属性
 function win(attr, val) {
     if (val == undefined) {
         return document.documentElement[attr] || document.body[attr];

@@ -151,7 +151,7 @@ function AsyncFunction(generator) {
             next(result);
         }); */
         value.then(next).catch(reason => {
-            // 如果返回的实例是失败态，跑出异常信息
+            // 如果返回的实例是失败态，抛出异常信息
             itor.throw(reason)
         });
     }

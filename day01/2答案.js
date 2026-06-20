@@ -5,7 +5,7 @@ Number(true);//1
 Number(false);//0
 Number(null);//0
 Number(undefined);//NaN
-Number({"name":"lili"});//'[object,object]'==>NaN
+Number({"name":"lili"});//'[object Object]'==>NaN
 Number([1,2]);//'1,2'==>NaN
 Number([1]);//1
 parseInt("12.5");//12
@@ -69,7 +69,7 @@ console.log('6'-'2');//4
 console.log('6'/undefined);//NaN
 var i=1;
 i++;
-console.log(i);//i
+console.log(i);//2
 console.log(!![]);//true
 console.log(!!{});//true
 console.log(!!undefined);//false
@@ -81,14 +81,14 @@ console.log(!!0);//false
 // var let const class function  import
 
 //js命名规范
-//1.不以可用保留字和关键字 2.数字不可开头 3.区分大小写 
+//1.不能使用保留字和关键字 2.数字不可开头 3.区分大小写
 
 //两种简单的调试方式
 // console.log()   alert(); 
 
 //js的数据类型
 //基本数据类型: Number String Boolean  null undefined  Symbol 
-//引用数据类型:function object=>1.数组[]  2.数学 Math 3.正则 / /  4.日期Data
+//引用数据类型:function object=>1.数组[]  2.数学 Math 3.正则 / /  4.日期 Date
 
 //把其他数据类型转换为Number数据类型的方法
 // Number([value]);   parseInt([value]); parseFloat([value]);

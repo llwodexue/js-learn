@@ -11,7 +11,7 @@ const {
 } = require('../utils/promiseFS');
 
 
-//=>获取部门列表
+//=>获取职务列表
 route.get('/list', (req, res) => {
 	let data = req.$jobDATA;
 	data = data.map(item => {
@@ -33,7 +33,7 @@ route.get('/list', (req, res) => {
 	}));
 });
 
-//=>获取部门信息
+//=>获取职务信息
 route.get('/info', (req, res) => {
 	let {
 		jobId = 0
@@ -55,7 +55,7 @@ route.get('/info', (req, res) => {
 	}));
 });
 
-//=>增加新部门
+//=>增加新职务
 route.post('/add', (req, res) => {
 	let $jobDATA = req.$jobDATA,
 		passDATA = null;
@@ -76,7 +76,7 @@ route.post('/add', (req, res) => {
 	});
 });
 
-//=>修改部门信息
+//=>修改职务信息
 route.post('/update', (req, res) => {
 	req.body = req.body || {};
 	let $jobDATA = req.$jobDATA,
@@ -104,7 +104,7 @@ route.post('/update', (req, res) => {
 	});
 });
 
-//=>删除部门信息
+//=>删除职务信息
 route.get('/delete', (req, res) => {
 	let $jobDATA = req.$jobDATA,
 		flag = false;

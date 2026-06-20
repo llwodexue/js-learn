@@ -38,7 +38,7 @@ var obj = {
         },
     },
 };
-// obj.prop..fullName
+// obj.prop.fullName
 console.log(obj.prop.getFullName()); // undefined
 var test = obj.prop.getFullName;
 // window.fullName

@@ -83,7 +83,7 @@ Person.prototype.sayName = function () {
 var f = new Person("cat", 17);
 f.sayName();
 
-console.log(global.toString === Object.prototype.toString);
+console.log(window.toString === Object.prototype.toString);
 
 let isType = (type, obj) => {
     return Object.prototype.toString.call(obj) === `[object ${type}]`;

@@ -41,7 +41,7 @@ route.post("/login", (req, res, next) => {
 // 校验登录态的接口
 route.get("/login", (req, res) => {
     // 当请求过来以后，就看看当前session里有没有connect.sid
-    // 使用这个接口的时候要注意，在登录成功之后才可以使用校验登录的接口，因为只有在登录之后客户端和服务器桑才会有connect.sid
+    // 使用这个接口的时候要注意，在登录成功之后才可以使用校验登录的接口，因为只有在登录之后客户端和服务器上才会有connect.sid
     // 当关闭服务再重新启动的时候，那上次存储的session信息会被清除
     if (req.session.useId) {
         success(res);

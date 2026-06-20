@@ -119,14 +119,14 @@
                         allPrice+=parseFloat($(item).html())
                     }
                     else {
-                        // 如果当前单价对应的小计不为位0，那就把单价push到ary数组里，用来一会在里面获取最大的单价
+                        // 如果当前单价对应的小计不为0，那就把单价push到ary数组里，用来一会在里面获取最大的单价
                         if(parseFloat($(item).next('strong').html()) !== 0){
                             ary.push(parseFloat($(item).html()))
                         }
                     }
                 })
 
-                // 以下三局就是把内容重新放回页面的元素中
+                // 以下三句就是把内容重新放回页面的元素中
                  $infoEms.eq(0).html(allCount);
                  $infoEms.eq(1).html(allPrice);
                  $infoEms.eq(2).html(Math.max(...ary));

@@ -69,7 +69,7 @@
         var res = "";
         while (res.length < 12) {
             var index = Math.round(Math.random() * (str.length - 1));
-            // 生成不重复的验证码（不区分大小写）
+            // 生成不重复的验证码（区分大小写，a 和 A 视为不同字符）
             if (res.indexOf(str[index]) == -1) {
                 res += str[index];
             }

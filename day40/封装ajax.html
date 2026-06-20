@@ -120,7 +120,7 @@
             // 只要上边if不成立，那data就是对象
             for (const key in data) {
                 if (!data.hasOwnProperty(key)) break;
-                // 为了防止把原型上的可枚举数组遍历处理，用hasOwnProperty给他处理一下
+                // 为了防止把原型上的可枚举属性遍历处理，用hasOwnProperty给他处理一下
                 str += `${key}=${data[key]}&`;
             }
             // 把最后的&截取下去

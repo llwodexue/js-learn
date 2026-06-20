@@ -50,8 +50,9 @@ function fn() {
     console.log(res);
 }
 fn(1, 3, 5);
-var a = { 0: 1, 1: 3, 2: 5 };
-console.log(...a);
+// 注意：普通对象没有实现迭代器接口，不能使用展开运算符，以下代码会报错
+// var a = { 0: 1, 1: 3, 2: 5 };
+// console.log(...a); // TypeError: Found non-callable @@iterator
 
 function toArr(cArr) {
     return [].slice.call(cArr);

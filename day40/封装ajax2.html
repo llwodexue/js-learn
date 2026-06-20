@@ -53,7 +53,7 @@
                 }
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4) {
-                        if (/^(2|3)\d{2}$/.test(status)) {
+                        if (/^(2|3)\d{2}$/.test(xhr.status)) {
                             let res = "";
                             switch (self.dataType.toUpperCase()) {
                                 case "JSON":
@@ -105,7 +105,7 @@
                 ...options
             };
             if (!options.url) {
-                throw new Error("url is must be supported")
+                throw new Error("url is required")
             }
             this.send(options);
         }

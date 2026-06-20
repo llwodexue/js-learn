@@ -39,10 +39,10 @@
 <script>
 let back = document.querySelector(".back");
 back.onclick = function () {
-    // 获取当前浏览器滚动条卷曲高度
+    // 获取当前浏览器滚动条卷去高度
     let winT = utils.win("scrollTop");
     let part = winT / 50;
-    // 把当前浏览器滚动条卷曲的高度平均分成50份，定时器每隔 20ms 就执行一次
+    // 把当前浏览器滚动条卷去的高度平均分成50份，定时器每隔 20ms 就执行一次
     let timer = setInterval(() => {
         winT -= part;
         utils.win("scrollTop", winT);

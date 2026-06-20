@@ -57,7 +57,7 @@
         // 获取当前盒子横向移动的最大距离
         let mW = box.offsetWidth - mark.offsetWidth;
         // 获取当前盒子纵向移动的最大距离
-        let mT = box.offsetWidth - mark.offsetWidth;
+        let mT = box.offsetHeight - mark.offsetHeight;
         curLeft < 0 ? curLeft = 0 : (curLeft > mW ? curLeft = mW : null)
         curTop < 0 ? curTop = 0 : (curTop > mT ? curTop = mT : null)
         mark.style.left = curLeft + "px";

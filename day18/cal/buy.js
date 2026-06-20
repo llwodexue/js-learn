@@ -2,7 +2,7 @@
     点击按钮的时候：让数量相应的增减
     怎么知道是加法按钮还是减法按钮？在结构中增加一个自定义属性flag
 */
-// 所有数组（加、减）
+// 所有按钮（加、减）
 var btn = document.querySelectorAll(".shop button");
 // 所有件数
 var numArrEle = document.querySelectorAll(".shop .num");
